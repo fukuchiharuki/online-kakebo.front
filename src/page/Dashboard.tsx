@@ -1,8 +1,6 @@
-type Props = {
-  location: {
-    search: string
-  };
-}
+import { RouterProps } from 'App';
+
+type Props = RouterProps;
 
 function Dashboard(props: Props) {
   console.log(props.location.search)

@@ -15,3 +15,9 @@ function App() {
 function dashboard(props: any) { return <Dashboard {...props} /> }
 
 export default App;
+
+export type RouterProps = {
+  location: {
+    search: string
+  };
+}
