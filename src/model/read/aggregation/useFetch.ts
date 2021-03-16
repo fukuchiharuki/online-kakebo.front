@@ -35,12 +35,25 @@ class MonthlyAggregation {
 }
 
 class AccountItem {
-  accountItem!: string;
+  accountItem!: AccountItemType;
   amount!: number;
 
   constructor(init: Partial<AccountItem>) {
     Object.assign(this, init);
   }
+}
+
+enum AccountItemType {
+  食費 = "食費",
+  食費_個別 = "食費(個別)",
+  日用品費 = "日用品費",
+  娯楽費 = "娯楽費",
+  医療費 = "医療費",
+  水道光熱費 = "水道光熱費",
+  通信費 = "通信費",
+  住居費 = "住居費",
+  特別費 = "特別費",
+  元入金 = "元入金",
 }
 
 const initialState = new Aggregation({ values: [] });
