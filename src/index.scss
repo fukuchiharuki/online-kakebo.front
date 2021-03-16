@@ -1,0 +1,34 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  max-width: 200px;
+  margin: 0 auto;
+
+  >* {
+    margin: 0 5px;
+  }
+}
+
+h1, h2 {
+  font-size: large;
+  text-align: center;;
+}
+
+.current-month-summary {
+  dt {
+    padding: 0 4px;
+    background-color: #DCDCDC;
+    font-size: small;
+  }
+
+  dd {
+    text-align: right;
+
+    +dd {
+      font-size: x-small;
+    }
+  }
+}
