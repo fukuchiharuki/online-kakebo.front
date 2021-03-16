@@ -21,18 +21,26 @@ class Aggregation {
   values!: MonthlyAggregation[];
 
   constructor(init: Partial<Aggregation>) {
-    Object.assign(this, init);
+    Object.assign(this, { values: init.values?.map(it => new MonthlyAggregation(it)) });
   }
 }
 
-type MonthlyAggregation = {
-  month: string;
-  data: AccountItem[];
+class MonthlyAggregation {
+  month!: string;
+  data!: AccountItem[];
+
+  constructor(init: Partial<MonthlyAggregation>) {
+    Object.assign(this, { ...init, data: init.data?.map(it => new AccountItem(it)) });
+  }
 }
 
-type AccountItem = {
-  accountItem: string;
-  amount: number;
+class AccountItem {
+  accountItem!: string;
+  amount!: number;
+
+  constructor(init: Partial<AccountItem>) {
+    Object.assign(this, init);
+  }
 }
 
 const initialState = new Aggregation({ values: [] });
