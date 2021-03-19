@@ -1,4 +1,3 @@
-import MonthlySummary from "./MonthlySummary";
 import MonthlyAggregation from "./MonthlyAggregation";
 
 export default class Aggregation {
@@ -9,11 +8,10 @@ export default class Aggregation {
   }
 
   isEmpty(): boolean {
-    return this.values.length == 0;
+    return this.values.length === 0;
   }
 
-  currentMonthSummary(): MonthlySummary {
-    const currentMonthAggregation = this.values.slice(-1)[0];
-    return MonthlySummary.of(currentMonthAggregation);
+  currentMonth(): MonthlyAggregation {
+    return this.values.slice(-1)[0];
   }
 }

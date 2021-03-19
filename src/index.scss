@@ -17,15 +17,22 @@ hr {
   border-bottom: 0;
 }
 
-h1, h2 {
-  font-size: large;
+h1, h2, h3 {
   text-align: center;;
 }
 
-.monthly-summary {
+h1, h2 {
+  font-size: large;
+}
+
+h3 {
+  font-size: medium;
+}
+
+.monthly-summary,
+.monthly-details {
   dt {
     padding: 0 4px;
-    background-color: #DCDCDC;
     font-size: small;
   }
 
@@ -35,5 +42,17 @@ h1, h2 {
     +dd {
       font-size: x-small;
     }
+  }
+}
+
+.monthly-summary {
+  dt {
+    background-color: #DCDCDC;
+  }
+}
+
+.monthly-details {
+  dt {
+    background-color: #ECECEC;
   }
 }
