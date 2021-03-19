@@ -4,11 +4,11 @@ html, body {
 }
 
 #root {
-  max-width: 200px;
+  max-width: 400px;
   margin: 0 auto;
 
   >* {
-    margin: 0 5px;
+    margin: 0 8px;
   }
 }
 
@@ -17,7 +17,7 @@ h1, h2 {
   text-align: center;;
 }
 
-.current-month-summary {
+.monthly-summary {
   dt {
     padding: 0 4px;
     background-color: #DCDCDC;
