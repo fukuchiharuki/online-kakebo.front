@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import { RouterProps } from 'App';
-import useFetch, { DataSource } from 'model/read/aggregation/useFetch';
+import useFetch from 'model/read/aggregation/useFetch';
+import DataSource from "infrastructure/DataSource";
 
 type Props = RouterProps;
 
