@@ -12,6 +12,11 @@ html, body {
   }
 }
 
+hr {
+  border-top: 1px dashed lightgray;
+  border-bottom: 0;
+}
+
 h1, h2 {
   font-size: large;
   text-align: center;;

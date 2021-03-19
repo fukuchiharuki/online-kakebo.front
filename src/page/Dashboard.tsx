@@ -16,6 +16,7 @@ function Dashboard(props: Props) {
       <header>
         <h1>Online KAKEBO</h1>
       </header>
+      <hr />
       <div>
         <h2>今月</h2>
         <MonthlySummaryView>{currentMonthSummary}</MonthlySummaryView>
