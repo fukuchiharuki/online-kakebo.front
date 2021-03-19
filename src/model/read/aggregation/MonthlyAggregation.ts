@@ -11,7 +11,7 @@ export default class MonthlyAggregation {
   totalAmount(): number {
     return this.data
       .map(it => it.amount)
-      .reduce((acc, amount) => acc + amount);
+      .reduce((acc, amount) => acc + amount, 0);
   }
 
   filter収入(): MonthlyAggregation {
