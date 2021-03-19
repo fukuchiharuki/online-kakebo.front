@@ -1,8 +1,9 @@
 import { Fragment } from 'react';
 import { RouterProps } from 'App';
 import useFetch from 'model/read/aggregation/useFetch';
-import DataSource from "infrastructure/DataSource";
-import Amount from "ui/Amount";
+import DataSource from 'infrastructure/DataSource';
+import Amount from 'ui/Amount';
+import Mount from 'ui/Mount';
 
 type Props = RouterProps;
 
@@ -23,10 +24,14 @@ function Dashboard(props: Props) {
           <dd><Amount>{currentMonthSummary.収入()}</Amount></dd>
           <dt>支出</dt>
           <dd><Amount>{currentMonthSummary.特別費を除いた支出()}</Amount></dd>
-          <dd>(+ 特別費: <Amount>{currentMonthSummary.特別費()}</Amount>)</dd>
+          <Mount if={currentMonthSummary.特別費()}>
+            <dd>(+ 特別費: <Amount>{currentMonthSummary.特別費()}</Amount>)</dd>
+          </Mount>
           <dt>差引</dt>
           <dd><Amount>{currentMonthSummary.特別費を含めた差引()}</Amount></dd>
-          <dd>(特別費込: <Amount>{currentMonthSummary.特別費を含めた差引()}</Amount>)</dd>
+          <Mount if={currentMonthSummary.特別費()}>
+            <dd>(特別費込: <Amount>{currentMonthSummary.特別費を含めた差引()}</Amount>)</dd>
+          </Mount>
         </dl>
       </div>
     </Fragment>
