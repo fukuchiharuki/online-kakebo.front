@@ -26,10 +26,10 @@ export default class MonthlyAggregation {
       .reduce((acc, category) => acc.includes(category) ? acc : acc.concat(category), [] as AccountItemType[])
   }
 
-  filterBy(accountItemType: AccountItemType): MonthlyAggregation {
+  filterByCategory(accountItemType: AccountItemType): MonthlyAggregation {
     return new MonthlyAggregation({
       month: this.month,
-      data: this.data.filter(it => it.is(accountItemType))
+      data: this.data.filter(it => it.categoryIs(accountItemType))
     });
   }
 

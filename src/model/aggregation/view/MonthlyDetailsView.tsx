@@ -14,7 +14,7 @@ function MonthlyDetailsView(props: Props) {
       <Repeat in={monthlyAggregation.categories()}>{it =>
         <Fragment>
           <dt>{it}</dt>
-          <dd><Amount>{monthlyAggregation.filterBy(it).totalAmount()}</Amount></dd>
+          <dd><Amount>{monthlyAggregation.filterByCategory(it).totalAmount()}</Amount></dd>
         </Fragment>
       }</Repeat>
     </dl>
