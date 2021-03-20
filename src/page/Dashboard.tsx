@@ -1,9 +1,9 @@
 import { Fragment } from 'react';
 import { RouterProps } from 'App';
-import useFetch from 'model/read/aggregation/useFetch';
-import MonthlySummaryView from 'model/read/aggregation/view/MonthlySummaryView';
+import useFetch from 'model/aggregation/useFetch';
+import MonthlySummaryView from 'model/aggregation/view/MonthlySummaryView';
 import DataSource from 'infrastructure/DataSource';
-import MonthlyDetailsView from 'model/read/aggregation/view/MonthlyDetailsView';
+import MonthlyDetailsView from 'model/aggregation/view/MonthlyDetailsView';
 
 type Props = RouterProps;
 
