@@ -16,6 +16,10 @@ export default class AccountItem {
     return this.category() === accountItemType;
   }
 
+  is(accountItemType: AccountItemType): boolean {
+    return this.accountItem === accountItemType;
+  }
+
   is収入(): boolean {
     return specOf(this.accountItem).is収入();
   }

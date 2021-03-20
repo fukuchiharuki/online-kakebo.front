@@ -33,6 +33,13 @@ export default class MonthlyAggregation {
     });
   }
 
+  filterByAccountItemType(accountItemType: AccountItemType): MonthlyAggregation {
+    return new MonthlyAggregation({
+      month: this.month,
+      data: this.data.filter(it => it.is(accountItemType))
+    });
+  }
+
   filter収入(): MonthlyAggregation {
     return new MonthlyAggregation({
       month: this.month,
