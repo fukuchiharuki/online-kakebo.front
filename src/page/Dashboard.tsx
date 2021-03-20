@@ -4,6 +4,7 @@ import useFetch from 'model/aggregation/useFetch';
 import MonthlySummaryView from 'model/aggregation/view/MonthlySummaryView';
 import DataSource from 'infrastructure/DataSource';
 import MonthlyDetailsView from 'model/aggregation/view/MonthlyDetailsView';
+import Today from 'model/date/Today';
 
 type Props = RouterProps;
 
@@ -20,6 +21,7 @@ function Dashboard(props: Props) {
       <hr />
       <div>
         <h2>今月</h2>
+        <p>(残り {new Today().restOfCurrentMonth()} 日)</p>
         <MonthlySummaryView>{currentMonthAggregation.asSummary()}</MonthlySummaryView>
         <h3>内訳</h3>
         <MonthlyDetailsView>{currentMonthAggregation}</MonthlyDetailsView>

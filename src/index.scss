@@ -29,6 +29,12 @@ h3 {
   font-size: medium;
 }
 
+h2 + p {
+  margin-top: -1rem;
+  font-size: small;
+  text-align: center;
+}
+
 .monthly-summary,
 .monthly-details {
   dt {
