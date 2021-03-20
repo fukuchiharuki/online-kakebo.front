@@ -29,14 +29,13 @@ h3 {
   font-size: medium;
 }
 
-h2 + p {
+h2+p {
   margin-top: -1rem;
   font-size: small;
   text-align: center;
 }
 
-.monthly-summary,
-.monthly-details {
+.monthly-summary, .monthly-details {
   dt {
     padding: 0 4px;
     font-size: small;
@@ -46,7 +45,7 @@ h2 + p {
     text-align: right;
 
     +dd {
-      font-size: x-small;
+      font-size: small;
     }
   }
 }
