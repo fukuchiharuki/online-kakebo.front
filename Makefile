@@ -17,7 +17,7 @@ clean:
 	rm -rf $(TARGET_DIR)
 	rm -rf $(ARTIFACT_DIR)
 
-deploy:
+push: $(TARGET)
 	git add $(TARGET_DIR)
 	git commit -m "deploy"
 	git push origin HEAD
