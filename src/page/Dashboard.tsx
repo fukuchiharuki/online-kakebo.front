@@ -10,9 +10,9 @@ type Props = RouterProps;
 
 function Dashboard(props: Props) {
   const dataSouce = dataSource(props.location.search);
-  const aggregation = useFetch(dataSouce);
-  if (aggregation.isEmpty()) return <Fragment>Now loading...</Fragment>;
-  const currentMonthAggregation = aggregation.currentMonth();
+  const { isLoading, data } = useFetch(dataSouce);
+  if (isLoading || data.isEmpty()) return <Fragment>Now loading...</Fragment>;
+  const currentMonthAggregation = data.currentMonth();
   return (
     <Fragment>
       <header>

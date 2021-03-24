@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react";
-import Aggregation from "./Aggregation";
+import { useEffect, useReducer } from "react";
 import DataSource from "infrastructure/DataSource";
-
-const initialState = new Aggregation({ values: [] });
+import reducer from './reducer';
+import { initialState, fetchAction, fetchedAction, errorAction } from './reducer';
 
 function useFetch(dataSource: DataSource) {
   const url = dataSource.aggregation();
-  const [state, setState] = useState(initialState)
+  const [state, dispatch] = useReducer(reducer, initialState);
   useEffect(() => {
     (async () => {
+      dispatch(fetchAction());
       const response = await fetch(url)
       if (response.ok) {
-        const aggregation = new Aggregation({ values: await response.json() });
-        setState(aggregation);
+        const json = await response.json();
+        dispatch(fetchedAction(json));
       } else {
-        setState(initialState);
+        dispatch(errorAction());
       }
     })();
   }, [url])
