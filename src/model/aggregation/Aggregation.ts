@@ -7,6 +7,10 @@ export default class Aggregation {
     Object.assign(this, { values: init.values?.map(it => new MonthlyAggregation(it)) });
   }
 
+  static empty(): Aggregation {
+    return new Aggregation({ values: [] });
+  }
+
   isEmpty(): boolean {
     return this.values.length === 0;
   }

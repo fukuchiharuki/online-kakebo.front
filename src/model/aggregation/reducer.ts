@@ -7,7 +7,7 @@ type State = {
 
 export const initialState = {
   isLoading: false,
-  data: new Aggregation({ values: [] })
+  data: Aggregation.empty()
 };
 
 enum ActionType {
