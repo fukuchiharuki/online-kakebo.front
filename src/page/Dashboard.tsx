@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { RouterProps } from 'App';
-import useFetch from 'model/aggregation/useFetch';
+import useQuery from 'model/aggregation/useQuery';
 import MonthlySummaryView from 'model/aggregation/view/MonthlySummaryView';
 import DataSource from 'infrastructure/DataSource';
 import MonthlyDetailsView from 'model/aggregation/view/MonthlyDetailsView';
@@ -10,7 +10,7 @@ type Props = RouterProps;
 
 function Dashboard(props: Props) {
   const dataSouce = dataSource(props.location.search);
-  const { isLoading, data } = useFetch(dataSouce);
+  const { isLoading, data } = useQuery(dataSouce);
   if (isLoading || data.isEmpty()) return <Fragment>Now loading...</Fragment>;
   const currentMonthAggregation = data.currentMonth();
   return (
