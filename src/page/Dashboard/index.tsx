@@ -1,11 +1,9 @@
 import { Fragment } from 'react';
 import { RouterProps } from 'App';
 import useQuery from 'model/aggregation/useQuery';
-import MonthlySummaryView from 'model/aggregation/view/MonthlySummaryView';
 import DataSource from 'infrastructure/DataSource';
-import MonthlyDetailsView from 'model/aggregation/view/MonthlyDetailsView';
-import Today from 'model/date/Today';
 import OrLoading from 'ui/OrLoading';
+import CurrentMonthSummaryTable from './CurrentMonthSummaryTable';
 
 type Props = RouterProps;
 
@@ -20,15 +18,7 @@ function Dashboard(props: Props) {
       <hr />
       <OrLoading if={isLoading || data.isEmpty()}>{() => {
         const currentMonthAggregation = data.currentMonth();
-        return (
-          <div>
-            <h2>今月</h2>
-            <p>(残り {new Today().restOfCurrentMonth()} 日)</p>
-            <MonthlySummaryView>{currentMonthAggregation.asSummary()}</MonthlySummaryView>
-            <h3>内訳</h3>
-            <MonthlyDetailsView>{currentMonthAggregation}</MonthlyDetailsView>
-          </div>
-        );
+        return <CurrentMonthSummaryTable monthlyAggregation={currentMonthAggregation} />
       }}</OrLoading>
     </Fragment>
   );
