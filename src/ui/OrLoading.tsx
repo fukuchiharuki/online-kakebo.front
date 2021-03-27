@@ -1,5 +1,5 @@
-import { Fragment } from "react";
 import Loading from "./Loading";
+import FadeIn from './FadeIn';
 
 type Props = {
   if: any,
@@ -12,7 +12,7 @@ function OrLoading(props: Props) {
     (typeof props.children === "function")
       ? props.children()
       : props.children;
-  return <Fragment>{children}</Fragment>;
+  return <FadeIn>{children}</FadeIn>;
 }
 
 export default OrLoading;
