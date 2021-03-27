@@ -12,13 +12,11 @@ export const initialState = {
 
 enum ActionType {
   FETCH,
-  FETCHED,
-  ERROR
+  FETCHED
 }
 
 interface FetchAction {
   type: typeof ActionType.FETCH;
-  payload: {};
 }
 
 interface FetchedAction {
@@ -26,23 +24,14 @@ interface FetchedAction {
   payload: { json: any; };
 }
 
-interface ErrorAction {
-  type: typeof ActionType.ERROR;
-  payload: {};
-}
-
-type Action = FetchAction | FetchedAction | ErrorAction;
+type Action = FetchAction | FetchedAction;
 
 export function fetchAction(): FetchAction {
-  return { type: ActionType.FETCH, payload: {} };
+  return { type: ActionType.FETCH };
 }
 
 export function fetchedAction(json: any): FetchedAction {
   return { type: ActionType.FETCHED, payload: { json } };
-}
-
-export function errorAction(): ErrorAction {
-  return { type: ActionType.ERROR, payload: {} };
 }
 
 export default function reducer(state: State, action: Action): State {
@@ -52,7 +41,5 @@ export default function reducer(state: State, action: Action): State {
     case ActionType.FETCHED:
       const data = new Aggregation({ values: action.payload.json });
       return { ...state, data, isLoading: false };
-    case ActionType.ERROR:
-      return initialState;
   }
 }
