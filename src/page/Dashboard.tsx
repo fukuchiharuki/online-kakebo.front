@@ -12,22 +12,24 @@ type Props = RouterProps;
 function Dashboard(props: Props) {
   const dataSouce = dataSource(props.location.search);
   const { isLoading, data } = useQuery(dataSouce);
-  const currentMonthAggregation = data.currentMonth();
   return (
     <Fragment>
       <header>
         <h1>Online KAKEBO</h1>
       </header>
       <hr />
-      <OrLoading if={isLoading || data.isEmpty()}>{() =>
-        <div>
-          <h2>今月</h2>
-          <p>(残り {new Today().restOfCurrentMonth()} 日)</p>
-          <MonthlySummaryView>{currentMonthAggregation.asSummary()}</MonthlySummaryView>
-          <h3>内訳</h3>
-          <MonthlyDetailsView>{currentMonthAggregation}</MonthlyDetailsView>
-        </div>
-      }</OrLoading>
+      <OrLoading if={isLoading || data.isEmpty()}>{() => {
+        const currentMonthAggregation = data.currentMonth();
+        return (
+          <div>
+            <h2>今月</h2>
+            <p>(残り {new Today().restOfCurrentMonth()} 日)</p>
+            <MonthlySummaryView>{currentMonthAggregation.asSummary()}</MonthlySummaryView>
+            <h3>内訳</h3>
+            <MonthlyDetailsView>{currentMonthAggregation}</MonthlyDetailsView>
+          </div>
+        );
+      }}</OrLoading>
     </Fragment>
   );
 }
