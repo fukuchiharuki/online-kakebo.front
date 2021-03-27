@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { RouterProps } from 'App';
 import useQuery from 'model/aggregation/useQuery';
 import DataSource from 'infrastructure/DataSource';
@@ -11,16 +10,10 @@ function Dashboard(props: Props) {
   const dataSouce = dataSource(props.location.search);
   const { isLoading, data } = useQuery(dataSouce);
   return (
-    <Fragment>
-      <header>
-        <h1>Online KAKEBO</h1>
-      </header>
-      <hr />
-      <OrLoading if={isLoading || data.isEmpty()}>{() => {
-        const currentMonthAggregation = data.currentMonth();
-        return <CurrentMonthSummaryTable monthlyAggregation={currentMonthAggregation} />
-      }}</OrLoading>
-    </Fragment>
+    <OrLoading if={isLoading || data.isEmpty()}>{() => {
+      const currentMonthAggregation = data.currentMonth();
+      return <CurrentMonthSummaryTable monthlyAggregation={currentMonthAggregation} />
+    }}</OrLoading>
   );
 }
 
