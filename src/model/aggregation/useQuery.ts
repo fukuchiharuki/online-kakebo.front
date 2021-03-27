@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useCallback, useReducer } from "react";
 import DataSource from "infrastructure/DataSource";
 import reducer from './reducer';
 import { initialState, fetchAction, fetchedAction } from './reducer';
@@ -9,8 +9,8 @@ function useQuery(dataSource: DataSource) {
   const url = dataSource.aggregation();
   const [state, dispatch] = useReducer(reducer, initialState);
   const callback: Callback = {
-    preProcess: () => dispatch(fetchAction()),
-    postProcess: (json) => dispatch(fetchedAction(json))
+    preProcess: useCallback(() => dispatch(fetchAction()), []),
+    postProcess: useCallback((json) => dispatch(fetchedAction(json)), [])
   }
   useFetch(url, callback);
   return state;

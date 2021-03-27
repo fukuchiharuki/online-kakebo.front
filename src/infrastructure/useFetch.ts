@@ -16,11 +16,11 @@ export default function useFetch(
         errorHandler && errorHandler();
       }
     })();
-  }, [url]);
+  }, [url, preProcess, postProcess, errorHandler]);
 }
 
 export type Callback = {
-  preProcess?: () => void;
-  postProcess?: (json: any) => void;
-  errorHandler?: () => void;
+  preProcess?: () => void
+  postProcess?: (json: any) => void
+  errorHandler?: () => void
 };
