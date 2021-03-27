@@ -7,7 +7,7 @@ TARGET := $(TARGET_DIR)/index.html
 all: $(TARGET)
 
 $(TARGET): $(ARTIFACT)
-	rm -rf $(TARGET_DIR)
+	rm -rf $(TARGET_DIR) &&\
 	cp -a $(ARTIFACT_DIR) $(TARGET_DIR)
 
 $(ARTIFACT): $(SRCS)
@@ -18,6 +18,6 @@ clean:
 	rm -rf $(ARTIFACT_DIR)
 
 push: $(TARGET)
-	git add $(TARGET_DIR)
-	git commit -m "deploy"
+	git add $(TARGET_DIR) &&\
+	git commit -m "deploy" &&\
 	git push origin HEAD
