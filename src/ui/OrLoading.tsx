@@ -1,12 +1,13 @@
 import { Fragment } from "react";
+import Loading from "./Loading";
 
 type Props = {
   if: any,
   children: any
 };
 
-function Mount(props: Props) {
-  if (!props.if) return null;
+function OrLoading(props: Props) {
+  if (props.if) return <Loading />;
   const children =
     (typeof props.children === "function")
       ? props.children()
@@ -14,4 +15,4 @@ function Mount(props: Props) {
   return <Fragment>{children}</Fragment>;
 }
 
-export default Mount;
+export default OrLoading;
