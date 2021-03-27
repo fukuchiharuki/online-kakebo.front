@@ -1,5 +1,6 @@
 import { useReducer } from 'react';
 import Aggregation from './Aggregation';
+import RemoteResource from 'infrastructure/RemoteResource';
 
 enum ActionType {
   FETCH,
@@ -23,8 +24,7 @@ export function fetchedAction(json: any): FetchedAction {
   return { type: ActionType.FETCHED, payload: { json } };
 }
 
-type State = {
-  isLoading: boolean;
+type State = RemoteResource & {
   data: Aggregation;
 }
 
@@ -45,6 +45,6 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-export default function useCustomReducer() {
+export default function useModel() {
   return useReducer(reducer, initialState);
 }
