@@ -1,6 +1,6 @@
-import MonthlySummary from '../MonthlySummary';
 import Amount from 'ui/Amount';
 import Mount from 'ui/Mount';
+import MonthlySummary from '../MonthlySummary';
 
 type Props = {
   children: MonthlySummary

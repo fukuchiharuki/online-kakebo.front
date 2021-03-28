@@ -1,10 +1,10 @@
-import { Fragment } from 'react';
-import { Route, Router } from 'react-router';
 import { createBrowserHistory } from "history";
-import useQuery from 'model/aggregation/useQuery';
-import Dashboard from 'page/Dashboard';
 import DataSourceParams from 'infrastructure/DataSourceParams';
 import { State } from 'model/aggregation/useModel';
+import useQuery from 'model/aggregation/useQuery';
+import Dashboard from 'page/Dashboard';
+import { Fragment } from 'react';
+import { Route, Router } from 'react-router';
 
 const history = createBrowserHistory();
 

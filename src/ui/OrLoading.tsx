@@ -1,5 +1,5 @@
-import Loading from "./Loading";
 import FadeIn from './FadeIn';
+import Loading from "./Loading";
 
 type Props = {
   if: any,

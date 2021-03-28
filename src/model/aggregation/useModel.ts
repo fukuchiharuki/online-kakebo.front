@@ -1,6 +1,6 @@
+import RemoteResource from 'infrastructure/RemoteResource';
 import { useReducer } from 'react';
 import Aggregation from './Aggregation';
-import RemoteResource from 'infrastructure/RemoteResource';
 
 enum ActionType {
   FETCH,

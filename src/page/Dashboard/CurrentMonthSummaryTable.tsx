@@ -1,7 +1,7 @@
-import MonthlySummaryView from 'model/aggregation/view/MonthlySummaryView';
-import MonthlyDetailsView from 'model/aggregation/view/MonthlyDetailsView';
-import Today from 'model/date/Today';
 import MonthlyAggregation from 'model/aggregation/MonthlyAggregation';
+import MonthlyDetailsView from 'model/aggregation/view/MonthlyDetailsView';
+import MonthlySummaryView from 'model/aggregation/view/MonthlySummaryView';
+import Today from 'model/date/Today';
 
 type Props = {
   monthlyAggregation: MonthlyAggregation
