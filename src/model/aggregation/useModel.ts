@@ -24,7 +24,9 @@ export function fetchedAction(json: any): FetchedAction {
   return { type: ActionType.FETCHED, payload: { json } };
 }
 
-type State = RemoteResource & {
+type Action = FetchAction | FetchedAction;
+
+export type State = RemoteResource & {
   data: Aggregation;
 }
 
@@ -32,8 +34,6 @@ const initialState = {
   isLoading: false,
   data: Aggregation.empty()
 };
-
-type Action = FetchAction | FetchedAction;
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {

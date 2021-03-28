@@ -1,27 +1,19 @@
-import { RouterProps } from 'App';
-import useQuery from 'model/aggregation/useQuery';
-import DataSource from 'infrastructure/DataSource';
+import { State } from 'model/aggregation/useModel';
 import OrLoading from 'ui/OrLoading';
 import CurrentMonthSummaryTable from './CurrentMonthSummaryTable';
 
-type Props = RouterProps;
+type Props = {
+  state: State
+};
 
 function Dashboard(props: Props) {
-  const dataSouce = dataSource(props.location.search);
-  const { isLoading, data } = useQuery(dataSouce);
+  const { isLoading, data } = props.state;
   return (
     <OrLoading if={isLoading || data.isEmpty()}>{() => {
       const currentMonthAggregation = data.currentMonth();
       return <CurrentMonthSummaryTable monthlyAggregation={currentMonthAggregation} />
     }}</OrLoading>
   );
-}
-
-function dataSource(search: string): DataSource {
-  const urlSearchParams = new URLSearchParams(search)
-  const script = urlSearchParams.get("script")!;
-  const data = urlSearchParams.get("data")!;
-  return new DataSource({ script, data });
 }
 
 export default Dashboard;

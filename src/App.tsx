@@ -1,11 +1,16 @@
 import { Fragment } from 'react';
 import { Route, Router } from 'react-router';
 import { createBrowserHistory } from "history";
+import useQuery from 'model/aggregation/useQuery';
 import Dashboard from 'page/Dashboard';
+import DataSourceParams from 'infrastructure/DataSourceParams';
+import { State } from 'model/aggregation/useModel';
 
 const history = createBrowserHistory();
 
 function App() {
+  const dataSouce = new DataSourceParams(history.location.search).dataSource();
+  const state = useQuery(dataSouce);
   return (
     <Fragment>
       <header>
@@ -13,7 +18,7 @@ function App() {
       </header>
       <hr />
       <Router history={history}>
-        <Route path="/" component={dashboard} />
+        <Route path="/" render={dashboard(state)} />
       </Router>
     </Fragment>
   );
@@ -25,6 +30,8 @@ export type RouterProps = {
   };
 }
 
-function dashboard(props: RouterProps) { return <Dashboard {...props} /> }
+function dashboard(state: State) {
+  return (props: RouterProps) => <Dashboard {...{ ...props, state }} />;
+}
 
 export default App;
