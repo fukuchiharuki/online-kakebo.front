@@ -24,14 +24,8 @@ function App() {
   );
 }
 
-export type RouterProps = {
-  location: {
-    search: string
-  };
-}
-
 function dashboard(state: State) {
-  return (props: RouterProps) => <Dashboard {...{ ...props, state }} />;
+  return () => <Dashboard {...{ state }} />;
 }
 
 export default App;
