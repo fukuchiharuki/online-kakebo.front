@@ -5,5 +5,5 @@ type Props = {
 };
 
 export default function FadeIn(props: Props) {
-  return <div className="fade-in" {...props}></div>;
+  return <div className="fade-in" {...props} />;
 }
