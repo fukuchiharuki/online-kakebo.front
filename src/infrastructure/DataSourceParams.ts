@@ -7,6 +7,14 @@ export default class DataSourceParams {
     this.search = search;
   }
 
+  validate(): boolean {
+    const urlSearchParams = new URLSearchParams(this.search);
+    return !![
+      urlSearchParams.get("script"),
+      urlSearchParams.get("data")
+    ].reduce((acc, param) => acc && param);
+  }
+
   dataSource(): DataSource {
     const urlSearchParams = new URLSearchParams(this.search)
     const script = urlSearchParams.get("script")!;
