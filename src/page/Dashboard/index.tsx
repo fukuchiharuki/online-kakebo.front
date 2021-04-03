@@ -14,9 +14,9 @@ function Dashboard(props: Props) {
   const { isLoading, data } = props.state;
   const location = useLocation();
   const cursorParams = new CursorParams(location.search);
-  const cursorRange = data.cursorRange();
   return (
     <OrLoading if={isLoading || data.isEmpty()}>{() => {
+      const cursorRange = data.cursorRange();
       const cursorProps = { cursorParams, cursorRange };
       const monthCursor = cursorParams.isCurrentMonth()
         ? <CurrentMonthCursor {...cursorProps} />
