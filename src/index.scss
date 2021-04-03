@@ -35,6 +35,24 @@ h2+p {
   text-align: center;
 }
 
+.month-cursor {
+  display: flex;
+  align-items: center;
+
+  justify-content: space-between;
+
+  .flip {
+    width: 40px;
+    font-size: x-large;
+    text-align: center;
+
+    &--disabled {
+      visibility: hidden;
+      pointer-events: none;
+    }
+  }
+}
+
 .monthly-summary, .monthly-details {
   dt {
     padding: 0 4px;

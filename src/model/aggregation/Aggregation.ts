@@ -1,3 +1,4 @@
+import CursorRange from './CursorRange';
 import MonthlyAggregation from "./MonthlyAggregation";
 
 export default class Aggregation {
@@ -15,7 +16,15 @@ export default class Aggregation {
     return this.values.length === 0;
   }
 
+  cursorRange(): CursorRange {
+    return new CursorRange(this.values.length);
+  }
+
+  cursorMonth(cursor: number): MonthlyAggregation {
+    return this.values.slice(cursor - 1)[0];
+  }
+
   currentMonth(): MonthlyAggregation {
-    return this.values.slice(-1)[0];
+    return this.cursorMonth(0);
   }
 }
