@@ -1,7 +1,6 @@
 import MonthlyAggregation from 'model/aggregation/MonthlyAggregation';
 import MonthlyDetailsView from 'model/aggregation/view/MonthlyDetailsView';
 import MonthlySummaryView from 'model/aggregation/view/MonthlySummaryView';
-import CurrentMonthCursor from './CurrentMonthCursor';
 
 type Props = {
   monthCursor: React.ReactNode
