@@ -1,5 +1,5 @@
 import { State } from 'model/aggregation/useModel';
-import { useLocation } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 import OrLoading from 'ui/OrLoading';
 import CurrentMonthCursor from './CurrentMonthCursor';
 import CursorParams from './CursorParams';
@@ -12,12 +12,17 @@ type Props = {
 
 function Dashboard(props: Props) {
   const { isLoading, data } = props.state;
+  const history = useHistory();
   const location = useLocation();
   const cursorParams = new CursorParams(location.search);
   return (
     <OrLoading if={isLoading || data.isEmpty()}>{() => {
       const cursorRange = data.cursorRange();
-      const cursorProps = { cursorParams, cursorRange };
+      const cursorProps = {
+        cursorParams, cursorRange,
+        onPrevClick: () => history.push({ pathname: "/", search: cursorParams.prevSearch() }),
+        onNextClick: () => history.push({ pathname: "/", search: cursorParams.nextSearch() })
+      };
       const monthCursor = cursorParams.isCurrentMonth()
         ? <CurrentMonthCursor {...cursorProps} />
         : <SpecifiedMonthCursor {...cursorProps} />

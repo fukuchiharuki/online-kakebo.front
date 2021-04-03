@@ -24,17 +24,17 @@ export default class CursorParams {
     return range.hasPrev(this.cursor());
   }
 
-  nextSearch(): object {
+  nextSearch(): string {
     return this.offsetSearch(1);
   }
 
-  prevSearch(): object {
+  prevSearch(): string {
     return this.offsetSearch(-1);
   }
 
-  private offsetSearch(offset: number): object {
-    const urlSearchParams = new URLSearchParams(this.search);
-    urlSearchParams.set("cursor", (this.cursor() + offset).toString())
-    return Array.from(urlSearchParams.entries()).reduce((acc, item) => Object.assign({}, acc, {[item[0]]: item[1]}), {});
+  private offsetSearch(offset: number): string {
+    const searchParams = new URLSearchParams(this.search);
+    searchParams.set("cursor", (this.cursor() + offset).toString())
+    return searchParams.toString();
   }
 }

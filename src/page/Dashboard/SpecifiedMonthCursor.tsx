@@ -5,16 +5,18 @@ import CursorParams from './CursorParams';
 type Props = {
   cursorParams: CursorParams
   cursorRange: CursorRange
+  onPrevClick?: () => void
+  onNextClick?: () => void
 }
 
 function SpecifiedMonthCursor(props: Props) {
-  const { cursorParams, cursorRange } = props;
+  const { cursorParams, cursorRange, onPrevClick, onNextClick } = props;
   const prevClassNames = (cursorParams.hasPrev(cursorRange) ? ["flip"] : ["flip", "flip--disabled"]).join(" ");
   const nextClassNames = (cursorParams.hasNext(cursorRange) ? ["flip"] : ["flip", "flip--disabled"]).join(" ");
   const [year, month] = new Today().cursorMonth(cursorParams.cursor());
   return (
     <div className="month-cursor">
-      <div className={prevClassNames}>◀</div>
+      <div className={prevClassNames} onClick={onPrevClick}>◀</div>
       <div>
         <h2>{
           (cursorParams.cursor() === -1)
@@ -25,7 +27,7 @@ function SpecifiedMonthCursor(props: Props) {
         }</h2>
         <p>({year} 年 {month} 月)</p>
       </div>
-      <div className={nextClassNames}>▶</div>
+      <div className={nextClassNames} onClick={onNextClick}>▶</div>
     </div>
   );
 }
