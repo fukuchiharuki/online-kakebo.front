@@ -1,21 +1,18 @@
-import CursorRange from 'model/aggregation/CursorRange';
 import MonthlyAggregation from 'model/aggregation/MonthlyAggregation';
 import MonthlyDetailsView from 'model/aggregation/view/MonthlyDetailsView';
 import MonthlySummaryView from 'model/aggregation/view/MonthlySummaryView';
 import CurrentMonthCursor from './CurrentMonthCursor';
-import CursorParams from './CursorParams';
 
 type Props = {
-  cursorParams: CursorParams
-  cursorRange: CursorRange
+  monthCursor: React.ReactNode
   monthlyAggregation: MonthlyAggregation
 }
 
-function CurrentMonthSummaryTable(props: Props) {
-  const { cursorParams, cursorRange, monthlyAggregation } = props;
+function MonthlySummaryTable(props: Props) {
+  const { monthCursor, monthlyAggregation } = props;
   return (
     <div>
-      <CurrentMonthCursor {...{ cursorParams, cursorRange }} />
+      {monthCursor}
       <MonthlySummaryView>{monthlyAggregation.asSummary()}</MonthlySummaryView>
       <h3>内訳</h3>
       <MonthlyDetailsView>{monthlyAggregation}</MonthlyDetailsView>
@@ -23,4 +20,4 @@ function CurrentMonthSummaryTable(props: Props) {
   );
 }
 
-export default CurrentMonthSummaryTable;
+export default MonthlySummaryTable;
