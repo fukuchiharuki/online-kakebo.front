@@ -20,8 +20,8 @@ function Dashboard(props: Props) {
       const cursorRange = data.cursorRange();
       const cursorProps = {
         cursorParams, cursorRange,
-        onPrevClick: () => history.push({ pathname: "/", search: cursorParams.prevSearch() }),
-        onNextClick: () => history.push({ pathname: "/", search: cursorParams.nextSearch() })
+        onPrevClick: () => history.push({ pathname: ".", search: cursorParams.prevSearch() }),
+        onNextClick: () => history.push({ pathname: ".", search: cursorParams.nextSearch() })
       };
       const monthCursor = cursorParams.isCurrentMonth()
         ? <CurrentMonthCursor {...cursorProps} />
