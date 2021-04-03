@@ -18,10 +18,11 @@ function Dashboard(props: Props) {
     <OrLoading if={isLoading || data.isEmpty()}>{() => {
       const monthlyAggregation = (cursorParams.isCurrentMonth())
         ? data.currentMonth()
-        : data.cursorMonth(cursorParams.cursor())
+        : data.cursorMonth(cursorParams.cursor());
+      const props = { cursorParams, cursorRange, monthlyAggregation };
       return (cursorParams.isCurrentMonth())
-        ? <CurrentMonthSummaryTable {...{ cursorParams, cursorRange, monthlyAggregation }} />
-        : <SpecifiedMonthSummaryTable {...{ cursorParams, cursorRange, monthlyAggregation }} />
+        ? <CurrentMonthSummaryTable {...props} />
+        : <SpecifiedMonthSummaryTable {...props} />
     }}</OrLoading>
   );
 }
