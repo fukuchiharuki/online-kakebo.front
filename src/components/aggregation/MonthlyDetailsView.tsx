@@ -1,8 +1,8 @@
+import Amount from 'components/ui/Amount';
+import Mount from 'components/ui/Mount';
+import Repeat from 'components/ui/Repeat';
 import { Fragment } from 'react';
-import Amount from 'ui/Amount';
-import Mount from 'ui/Mount';
-import Repeat from 'ui/Repeat';
-import MonthlyAggregation from '../MonthlyAggregation';
+import MonthlyAggregation from './model/MonthlyAggregation';
 
 type Props = {
   children: MonthlyAggregation

@@ -1,6 +1,6 @@
-import { State } from 'model/aggregation/useModel';
+import { State } from 'components/aggregation/model/useModel';
+import OrLoading from 'components/ui/OrLoading';
 import { useHistory, useLocation } from 'react-router';
-import OrLoading from 'ui/OrLoading';
 import CurrentMonthCursor from './CurrentMonthCursor';
 import CursorParams from './CursorParams';
 import MonthlySummaryTable from './MonthlySummaryTable';

@@ -1,5 +1,5 @@
-import CursorRange from 'model/aggregation/CursorRange';
-import Today from 'model/date/Today';
+import CursorRange from 'components/aggregation/model/CursorRange';
+import Today from 'components/date/model/Today';
 import CursorParams from './CursorParams';
 
 type Props = {

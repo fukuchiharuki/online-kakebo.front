@@ -1,4 +1,4 @@
-import CursorRange from "model/aggregation/CursorRange";
+import CursorRange from "components/aggregation/model/CursorRange";
 
 export default class CursorParams {
   search!: string;

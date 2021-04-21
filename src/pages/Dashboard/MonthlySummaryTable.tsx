@@ -1,6 +1,6 @@
-import MonthlyAggregation from 'model/aggregation/MonthlyAggregation';
-import MonthlyDetailsView from 'model/aggregation/view/MonthlyDetailsView';
-import MonthlySummaryView from 'model/aggregation/view/MonthlySummaryView';
+import MonthlyAggregation from 'components/aggregation/model/MonthlyAggregation';
+import MonthlyDetailsView from 'components/aggregation/MonthlyDetailsView';
+import MonthlySummaryView from 'components/aggregation/MonthlySummaryView';
 
 type Props = {
   monthCursor: React.ReactNode
