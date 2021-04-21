@@ -1,4 +1,4 @@
-import { State } from 'components/aggregation/model/useModel';
+import { State } from 'components/aggregation/model/useStore';
 import OrLoading from 'components/ui/OrLoading';
 import { useHistory, useLocation } from 'react-router';
 import CurrentMonthCursor from './CurrentMonthCursor';

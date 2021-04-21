@@ -1,11 +1,11 @@
 import DataSource from "infrastructure/DataSource";
 import useFetch, { Callback } from 'infrastructure/useFetch';
 import { useCallback } from "react";
-import useModel, { fetchAction, fetchedAction } from './useModel';
+import useStore, { fetchAction, fetchedAction } from './useStore';
 
 function useQuery(dataSource: DataSource) {
   const url = dataSource.aggregation();
-  const [state, dispatch] = useModel();
+  const [state, dispatch] = useStore();
   const callback: Callback = {
     preProcess: useCallback(() => dispatch(fetchAction()), [dispatch]),
     postProcess: useCallback((json) => dispatch(fetchedAction(json)), [dispatch])

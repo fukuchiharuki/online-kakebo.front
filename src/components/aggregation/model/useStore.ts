@@ -45,6 +45,6 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-export default function useModel() {
+export default function useStore() {
   return useReducer(reducer, initialState);
 }

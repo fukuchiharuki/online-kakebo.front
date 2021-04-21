@@ -1,4 +1,4 @@
-import { State } from 'components/aggregation/model/useModel';
+import { State } from 'components/aggregation/model/useStore';
 import useQuery from 'components/aggregation/model/useQuery';
 import Center from 'components/ui/Center';
 import { createBrowserHistory } from "history";
