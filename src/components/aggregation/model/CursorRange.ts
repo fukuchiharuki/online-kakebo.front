@@ -1,19 +1,19 @@
 export default class CursorRange {
-  length!: number;
+  length!: number
 
   constructor(length: number) {
-    this.length = length;
+    this.length = length
   }
 
   hasNext(current: number): boolean {
-    return this.isInRange(current + 1);
+    return this.isInRange(current + 1)
   }
 
   hasPrev(current: number): boolean {
-    return this.isInRange(current - 1);
+    return this.isInRange(current - 1)
   }
 
   private isInRange(cursor: number): boolean {
-    return (-this.length < cursor && cursor <= 0);
+    return -this.length < cursor && cursor <= 0
   }
 }

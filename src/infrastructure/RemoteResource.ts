@@ -2,4 +2,4 @@ type RemoteResource = {
   isLoading: boolean
 }
 
-export default RemoteResource;
+export default RemoteResource
