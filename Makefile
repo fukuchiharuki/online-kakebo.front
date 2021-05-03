@@ -13,6 +13,9 @@ $(TARGET): $(ARTIFACT)
 $(ARTIFACT): $(SRCS)
 	npm run build
 
+fix: 
+	npm run fix
+
 clean:
 	rm -rf $(TARGET_DIR)
 	rm -rf $(ARTIFACT_DIR)
