@@ -6,7 +6,7 @@ type Props = {
   children: any
 };
 
-function OrLoading(props: Props) {
+function WithLoading(props: Props) {
   if (props.if) return <Loading />;
   const children =
     (typeof props.children === "function")
@@ -15,4 +15,4 @@ function OrLoading(props: Props) {
   return <FadeIn>{children}</FadeIn>;
 }
 
-export default OrLoading;
+export default WithLoading;

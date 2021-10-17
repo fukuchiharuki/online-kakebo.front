@@ -1,5 +1,5 @@
 import Aggregation from 'components/aggregation/model/Aggregation';
-import OrLoading from 'components/ui/OrLoading';
+import WithLoading from 'components/ui/WithLoading';
 import { QueryState } from 'infrastructure/useQuery';
 import { useHistory, useLocation } from 'react-router';
 import CurrentMonthCursor from './CurrentMonthCursor';
@@ -17,8 +17,8 @@ function Dashboard(props: Props) {
   const location = useLocation();
   const cursorParams = new CursorParams(location.search);
   return (
-    <OrLoading if={isLoading || !data}>{() => {
-      const cursorRange = data!.cursorRange();
+    <WithLoading if={isLoading || !data}>{() => {
+      const cursorRange = data!!.cursorRange();
       const cursorProps = {
         cursorParams, cursorRange,
         onPrevClick: () => history.push({ pathname: ".", search: cursorParams.prevSearch() }),
@@ -32,7 +32,7 @@ function Dashboard(props: Props) {
         : data!!.cursorMonth(cursorParams.cursor());
       const props = { monthCursor, monthlyAggregation };
       return <MonthlySummaryTable {...props} />
-    }}</OrLoading>
+    }}</WithLoading>
   );
 }
 
