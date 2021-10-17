@@ -1,5 +1,4 @@
-import { State } from 'components/aggregation/model/useStore';
-import useQuery from 'components/aggregation/model/useQuery';
+import useAggregationQuery from 'components/aggregation/model/useAggregationQuery';
 import Center from 'components/ui/Center';
 import { createBrowserHistory } from "history";
 import DataSource from 'infrastructure/DataSource';
@@ -7,6 +6,8 @@ import DataSourceParams from 'infrastructure/DataSourceParams';
 import Dashboard from 'pages/Dashboard';
 import { Fragment } from 'react';
 import { Route, Router } from 'react-router';
+import { QueryState } from 'infrastructure/useQuery';
+import Aggregation from 'components/aggregation/model/Aggregation';
 
 const history = createBrowserHistory();
 
@@ -24,7 +25,7 @@ function InvalidParameters() {
 
 function EntryPoint(props: { dataSource: DataSource }) {
   const { dataSource } = props;
-  const state = useQuery(dataSource);
+  const state = useAggregationQuery(dataSource);
   return (
     <Fragment>
       <header>
@@ -38,7 +39,7 @@ function EntryPoint(props: { dataSource: DataSource }) {
   );
 }
 
-function dashboard(state: State) {
+function dashboard(state: QueryState<Aggregation>) {
   return () => <Dashboard {...{ state }} />;
 }
 
