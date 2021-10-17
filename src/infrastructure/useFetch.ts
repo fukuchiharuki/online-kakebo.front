@@ -1,4 +1,5 @@
-import { useCallback, useEffect } from 'react'
+import { useEffect } from 'react'
+import Interceptor from './Interceptor'
 
 export default function useFetch(url: string, interceptor?: Interceptor) {
   const { preProcess, postProcess, errorHandler } = interceptor || {}
@@ -12,42 +13,9 @@ export default function useFetch(url: string, interceptor?: Interceptor) {
         postProcess && postProcess(json)
         console.log(`ok`)
       } else {
-        errorHandler && errorHandler()
+        errorHandler && errorHandler(response.status)
         console.log(`error`)
       }
     })()
   }, [url, preProcess, postProcess, errorHandler])
-}
-
-export type Interceptor = {
-  preProcess?: () => void
-  postProcess?: (json: any) => void
-  errorHandler?: () => void
-}
-
-export function useInterceptorMerge(a?: Interceptor, b?: Interceptor): Interceptor {
-  const {
-    preProcess: aPreProcess,
-    postProcess: aPostProcess,
-    errorHandler: aErrorHandler
-  } = a || {}
-  const {
-    preProcess: bPreProcess,
-    postProcess: bPostProcess,
-    errorHandler: bErrorHandler
-  } = b || {}
-  return {
-    preProcess: useCallback(() => {
-      aPreProcess && aPreProcess()
-      bPreProcess && bPreProcess()
-    }, [aPreProcess, bPreProcess]),
-    postProcess: useCallback((json: any) => {
-      aPostProcess && aPostProcess(json)
-      bPostProcess && bPostProcess(json)
-    }, [aPostProcess, bPostProcess]),
-    errorHandler: useCallback(() => {
-      aErrorHandler && aErrorHandler()
-      bErrorHandler && bErrorHandler()
-    }, [aErrorHandler, bErrorHandler]),
-  } as Interceptor
 }

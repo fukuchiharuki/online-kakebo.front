@@ -1,5 +1,6 @@
-import useFetch, { Interceptor, useInterceptorMerge } from './useFetch'
+import useFetch from './useFetch'
 import { useCallback, useState } from 'react'
+import Interceptor, { useInterceptorMerge } from './Interceptor'
 
 export type QueryState<T> = {
   isLoading: boolean
