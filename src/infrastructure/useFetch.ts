@@ -4,7 +4,7 @@ import Interceptor from './Interceptor'
 export default function useFetch(url: string, interceptor?: Interceptor) {
   const { preProcess, postProcess, errorHandler } = interceptor || {}
   useEffect(() => {
-    ; (async () => {
+    ;(async () => {
       preProcess && preProcess()
       console.log(`get ${url}`)
       const response = await fetch(url)

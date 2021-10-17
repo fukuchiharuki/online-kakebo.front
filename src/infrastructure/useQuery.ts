@@ -41,10 +41,13 @@ function useRequestInterceptor<T>(
     preProcess: useCallback(() => {
       setLoading(true)
     }, [setLoading]),
-    postProcess: useCallback((json) => {
-      setData(converter(json))
-      setLoading(false)
-    }, [converter, setData, setLoading]),
+    postProcess: useCallback(
+      (json) => {
+        setData(converter(json))
+        setLoading(false)
+      },
+      [converter, setData, setLoading]
+    ),
   } as Interceptor
   return useInterceptorMerge(requestInterceptor, interceptor)
 }

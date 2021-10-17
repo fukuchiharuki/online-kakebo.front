@@ -5,7 +5,10 @@ import Aggregation from './Aggregation'
 
 function useAggregationQuery(dataSource: DataSource) {
   const url = dataSource.aggregation()
-  const converter = useCallback((json: any) => new Aggregation({ values: json }), [])
+  const converter = useCallback(
+    (json: any) => new Aggregation({ values: json }),
+    []
+  )
   return useQuery<Aggregation>(url, converter)
 }
 

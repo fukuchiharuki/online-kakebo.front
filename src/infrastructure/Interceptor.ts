@@ -1,4 +1,4 @@
-import { useCallback } from "react"
+import { useCallback } from 'react'
 
 type Interceptor = {
   preProcess?: () => void
@@ -8,29 +8,38 @@ type Interceptor = {
 
 export default Interceptor
 
-export function useInterceptorMerge(a?: Interceptor, b?: Interceptor): Interceptor {
+export function useInterceptorMerge(
+  a?: Interceptor,
+  b?: Interceptor
+): Interceptor {
   const {
     preProcess: aPreProcess,
     postProcess: aPostProcess,
-    errorHandler: aErrorHandler
+    errorHandler: aErrorHandler,
   } = a || {}
   const {
     preProcess: bPreProcess,
     postProcess: bPostProcess,
-    errorHandler: bErrorHandler
+    errorHandler: bErrorHandler,
   } = b || {}
   return {
     preProcess: useCallback(() => {
       aPreProcess && aPreProcess()
       bPreProcess && bPreProcess()
     }, [aPreProcess, bPreProcess]),
-    postProcess: useCallback((json: any) => {
-      aPostProcess && aPostProcess(json)
-      bPostProcess && bPostProcess(json)
-    }, [aPostProcess, bPostProcess]),
-    errorHandler: useCallback((status: number) => {
-      aErrorHandler && aErrorHandler(status)
-      bErrorHandler && bErrorHandler(status)
-    }, [aErrorHandler, bErrorHandler]),
+    postProcess: useCallback(
+      (json: any) => {
+        aPostProcess && aPostProcess(json)
+        bPostProcess && bPostProcess(json)
+      },
+      [aPostProcess, bPostProcess]
+    ),
+    errorHandler: useCallback(
+      (status: number) => {
+        aErrorHandler && aErrorHandler(status)
+        bErrorHandler && bErrorHandler(status)
+      },
+      [aErrorHandler, bErrorHandler]
+    ),
   } as Interceptor
 }
