@@ -1,9 +1,9 @@
 import { useCallback, useEffect } from 'react'
 
-export default function useFetch(url: string, callback?: Callback) {
-  const { preProcess, postProcess, errorHandler } = callback || {}
+export default function useFetch(url: string, interceptor?: Interceptor) {
+  const { preProcess, postProcess, errorHandler } = interceptor || {}
   useEffect(() => {
-    ;(async () => {
+    ; (async () => {
       preProcess && preProcess()
       console.log(`get ${url}`)
       const response = await fetch(url)
@@ -19,22 +19,22 @@ export default function useFetch(url: string, callback?: Callback) {
   }, [url, preProcess, postProcess, errorHandler])
 }
 
-export type Callback = {
+export type Interceptor = {
   preProcess?: () => void
   postProcess?: (json: any) => void
   errorHandler?: () => void
 }
 
-export function useMergedCallback(a?: Callback, b?: Callback): Callback {
-  const { 
-    preProcess: aPreProcess, 
-    postProcess: aPostProcess, 
-    errorHandler: aErrorHandler 
+export function useInterceptorMerge(a?: Interceptor, b?: Interceptor): Interceptor {
+  const {
+    preProcess: aPreProcess,
+    postProcess: aPostProcess,
+    errorHandler: aErrorHandler
   } = a || {}
-  const { 
-    preProcess: bPreProcess, 
-    postProcess: bPostProcess, 
-    errorHandler: bErrorHandler 
+  const {
+    preProcess: bPreProcess,
+    postProcess: bPostProcess,
+    errorHandler: bErrorHandler
   } = b || {}
   return {
     preProcess: useCallback(() => {
@@ -49,5 +49,5 @@ export function useMergedCallback(a?: Callback, b?: Callback): Callback {
       aErrorHandler && aErrorHandler()
       bErrorHandler && bErrorHandler()
     }, [aErrorHandler, bErrorHandler]),
-  } as Callback
+  } as Interceptor
 }

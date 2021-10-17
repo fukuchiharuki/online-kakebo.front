@@ -1,4 +1,4 @@
-import useFetch, { Callback, useMergedCallback } from './useFetch'
+import useFetch, { Interceptor, useInterceptorMerge } from './useFetch'
 import { useCallback, useState } from 'react'
 
 export type QueryState<T> = {
@@ -11,32 +11,32 @@ export type Converter<T> = (json: any) => T
 function useQuery<T>(
   url: string,
   converter?: Converter<T>,
-  callback?: Callback
+  interceptor?: Interceptor
 ): QueryState<T> {
   const [data, setData] = useState<T | null>(null)
   const [isLoading, setLoading] = useState<boolean>(false)
-  const requestCallback = useRequestCallback(
+  const requestInterceptor = useRequestInterceptor(
     setData,
     setLoading,
-    useDefinedConverter(converter),
-    callback
+    useConverterDefine(converter),
+    interceptor
   )
-  useFetch(url, requestCallback)
+  useFetch(url, requestInterceptor)
   return { isLoading, data }
 }
 
-function useDefinedConverter<T>(converter?: Converter<T>): Converter<T> {
+function useConverterDefine<T>(converter?: Converter<T>): Converter<T> {
   const defaultConverter = useCallback((json) => json as T, [])
   return converter || defaultConverter
 }
 
-function useRequestCallback<T>(
+function useRequestInterceptor<T>(
   setData: (data: T | null) => void,
   setLoading: (isLoading: boolean) => void,
   converter: Converter<T>,
-  callback?: Callback
-): Callback {
-  const requestCallback = {
+  interceptor?: Interceptor
+): Interceptor {
+  const requestInterceptor = {
     preProcess: useCallback(() => {
       setLoading(true)
     }, [setLoading]),
@@ -44,8 +44,8 @@ function useRequestCallback<T>(
       setData(converter(json))
       setLoading(false)
     }, [converter, setData, setLoading]),
-  } as Callback
-  return useMergedCallback(requestCallback, callback)
+  } as Interceptor
+  return useInterceptorMerge(requestInterceptor, interceptor)
 }
 
 export default useQuery
