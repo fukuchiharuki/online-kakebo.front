@@ -18,7 +18,8 @@ function Dashboard(props: Props) {
   const cursorParams = new CursorParams(location.search);
   return (
     <WithLoading if={isLoading || !data}>{() => {
-      const cursorRange = data!!.cursorRange();
+      const aggregation = data!!
+      const cursorRange = aggregation.cursorRange();
       const cursorProps = {
         cursorParams, cursorRange,
         onPrevClick: () => history.push({ pathname: ".", search: cursorParams.prevSearch() }),
@@ -28,8 +29,8 @@ function Dashboard(props: Props) {
         ? <CurrentMonthCursor {...cursorProps} />
         : <SpecifiedMonthCursor {...cursorProps} />
       const monthlyAggregation = cursorParams.isCurrentMonth()
-        ? data!!.currentMonth()
-        : data!!.cursorMonth(cursorParams.cursor());
+        ? aggregation.currentMonth()
+        : aggregation.cursorMonth(cursorParams.cursor());
       const props = { monthCursor, monthlyAggregation };
       return <MonthlySummaryTable {...props} />
     }}</WithLoading>
