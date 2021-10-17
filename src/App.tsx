@@ -30,6 +30,7 @@ function EntryPoint(props: { dataSource: DataSource }) {
     <Fragment>
       <header>
         <h1>Online KAKEBO</h1>
+        <div className="reload" onClick={() => window.location.reload()}>📡</div>
       </header>
       <hr />
       <Router history={history}>

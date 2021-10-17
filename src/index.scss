@@ -12,6 +12,16 @@ html, body {
   }
 }
 
+header {
+  position: relative;
+  .reload {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+  }
+}
+
 hr {
   border-top: 1px dashed lightgray;
   border-bottom: 0;
