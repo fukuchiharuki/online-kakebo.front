@@ -17,7 +17,7 @@ function Dashboard(props: Props) {
   const location = useLocation();
   const cursorParams = new CursorParams(location.search);
   return (
-    <WithLoading if={isLoading || !data}>{() => {
+    <WithLoading if={isLoading || data == null}>{() => {
       const aggregation = data!!
       const cursorRange = aggregation.cursorRange();
       const cursorProps = {
