@@ -45,6 +45,7 @@ h2+p {
     width: 40px;
     font-size: x-large;
     text-align: center;
+    cursor: pointer;
 
     &--disabled {
       visibility: hidden;
