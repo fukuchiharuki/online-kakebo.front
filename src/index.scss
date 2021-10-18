@@ -6,6 +6,7 @@ html, body {
 #root {
   max-width: 400px;
   margin: 0 auto;
+  padding-bottom: 80px;
 
   >* {
     margin: 0 8px;
@@ -19,6 +20,7 @@ header {
     right: 0;
     top: 0;
     cursor: pointer;
+    padding: 0 4px;
   }
 }
 
@@ -46,6 +48,14 @@ h2+p {
 }
 
 .month-cursor {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  background-color: white;
+  border-top: 1px solid #ECECEC;
+  box-shadow: 0 0 4px rgba(0,0,0,.1);
+
   display: flex;
   align-items: center;
 
@@ -56,6 +66,8 @@ h2+p {
     font-size: x-large;
     text-align: center;
     cursor: pointer;
+
+    text-shadow: 1px 1px 2px rgba(0,0,0,.5);
 
     &--disabled {
       visibility: hidden;
