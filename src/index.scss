@@ -35,6 +35,11 @@ header {
   &:hover {
     background-color: #75A9FF;
   }
+  &--small {
+    height: 24px;
+    line-height: 24px;
+    font-size: x-small;
+  }
 }
 
 hr {
