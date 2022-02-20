@@ -19,8 +19,18 @@ header {
     position: absolute;
     right: 0;
     top: 0;
-    cursor: pointer;
-    padding: 0 4px;
+  }
+}
+
+.button {
+  font-size: small;
+  padding: 4px 12px;
+  background-color: #2C7CFF;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover {
+    background-color: #75A9FF;
   }
 }
 

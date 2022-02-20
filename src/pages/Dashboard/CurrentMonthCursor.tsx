@@ -15,12 +15,12 @@ function CurrentMonthCursor(props: Props) {
   const nextClassNames = "flip flip--disabled";
   return (
     <div className="month-cursor">
-      <div className={prevClassNames} onClick={onPrevClick}>◀</div>
+      <div className={prevClassNames} onClick={onPrevClick}><span className="button">＜</span></div>
       <div>
         <h2>今月</h2>
         <p>(残り {new Today().restOfCurrentMonth()} 日)</p>
       </div>
-      <div className={nextClassNames} onClick={onNextClick}>▶</div>
+      <div className={nextClassNames} onClick={onNextClick}><span className="button">＞</span></div>
     </div>
   );
 }
