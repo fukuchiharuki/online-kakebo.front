@@ -23,10 +23,13 @@ header {
 }
 
 .button {
-  font-size: small;
-  padding: 4px 12px;
+  display: inline-block;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 12px;
   background-color: #2C7CFF;
   color: white;
+  font-size: small;
   border-radius: 4px;
   cursor: pointer;
   &:hover {
@@ -74,9 +77,8 @@ h2+p {
   .flip {
     width: 40px;
     margin: 8px;
-    padding: 4px;
+    padding: 8px 4px;
 
-    font-size: x-large;
     text-align: center;
     cursor: pointer;
 
