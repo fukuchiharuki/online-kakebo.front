@@ -1,11 +1,8 @@
 import CursorRange from './CursorRange'
 import MonthlyAggregation, { asMonthlyAggregation } from './MonthlyAggregation'
 
-type Properties = {
+type Aggregation = {
   values: MonthlyAggregation[]
-}
-
-type Aggregation = Properties & {
   isEmpty(): boolean
   cursorRange(): CursorRange
   cursorMonth(cursor: number): MonthlyAggregation

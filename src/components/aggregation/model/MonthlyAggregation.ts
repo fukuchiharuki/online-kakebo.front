@@ -2,12 +2,9 @@ import AccountItem, { asAccountItem } from './AccountItem'
 import AccountItemType from './AccountItemType'
 import MonthlySummary from './MonthlySummary'
 
-type Properties = {
+type MonthlyAggregation = {
   month: string
   data: AccountItem[]
-}
-
-type MonthlyAggregation = Properties & {
   asSummary(): MonthlySummary
   totalAmount(): number
   categories(): AccountItemType[]

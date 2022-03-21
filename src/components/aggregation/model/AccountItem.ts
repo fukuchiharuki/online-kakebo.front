@@ -1,11 +1,8 @@
 import AccountItemType, { specOf } from './AccountItemType'
 
-type Properties = {
+type AccountItem = {
   accountItem: AccountItemType
   amount: number
-}
-
-type AccountItem = Properties & {
   category(): AccountItemType
   categoryIs(accountItemType: AccountItemType): boolean
   is(accountItemType: AccountItemType): boolean
