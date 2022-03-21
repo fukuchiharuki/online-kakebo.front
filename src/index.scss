@@ -28,13 +28,13 @@ header {
   height: 28px;
   line-height: 28px;
   padding: 0 12px;
-  background-color: #2C7CFF;
+  background-color: black;
   color: white;
   font-size: small;
   border-radius: 4px;
   cursor: pointer;
   &:hover {
-    background-color: #75A9FF;
+    background-color: darkgray;
   }
   &--small {
     height: 20px;
