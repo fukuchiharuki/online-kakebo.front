@@ -13,11 +13,12 @@ type AccountItem = {
 export default AccountItem
 
 export function asAccountItem(o: any): AccountItem {
-  Object.setPrototypeOf(o, prototype)
-  return o
+  const newObject = Object.create(o)
+  Object.assign(newObject, extension)
+  return newObject
 }
 
-const prototype = {
+const extension = {
   category(): AccountItemType {
     return specOf(this.accountItem).category()
   },

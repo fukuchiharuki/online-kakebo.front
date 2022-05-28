@@ -18,12 +18,15 @@ type MonthlyAggregation = {
 export default MonthlyAggregation
 
 export function asMonthlyAggregation(o: any): MonthlyAggregation {
-  Object.setPrototypeOf(o, prototype)
-  o.data?.forEach((it: any) => asAccountItem(it))
-  return o
+  const newObject = Object.create({
+    ...o,
+    data: o.data.map((it: any) => asAccountItem(it))
+  })
+  Object.assign(newObject, extension)
+  return newObject
 }
 
-const prototype = {
+const extension = {
   asSummary(): MonthlySummary {
     return MonthlySummary.of(this)
   },

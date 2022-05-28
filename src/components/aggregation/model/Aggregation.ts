@@ -2,32 +2,33 @@ import CursorRange from './CursorRange'
 import MonthlyAggregation, { asMonthlyAggregation } from './MonthlyAggregation'
 
 type Aggregation = {
-  values: MonthlyAggregation[]
   isEmpty(): boolean
   cursorRange(): CursorRange
   cursorMonth(cursor: number): MonthlyAggregation
   currentMonth(): MonthlyAggregation
-}
+} & Array<MonthlyAggregation>
 
 export default Aggregation
 
 export function asAggregation(o: any): Aggregation {
-  Object.setPrototypeOf(o, prototype)
-  o.values?.forEach((it: any) => asMonthlyAggregation(it))
-  return o
+  const newObject = Object.create(
+    o.map((it: any) => asMonthlyAggregation(it))
+  )
+  Object.assign(newObject, extension)
+  return newObject
 }
 
-const prototype = {
+const extension = {
   isEmpty(): boolean {
-    return this.values.length === 0
+    return this.length === 0
   },
 
   cursorRange(): CursorRange {
-    return new CursorRange(this.values.length)
+    return new CursorRange(this.length)
   },
 
   cursorMonth(cursor: number): MonthlyAggregation {
-    return this.values.slice(cursor - 1)[0]
+    return this.slice(cursor - 1)[0]
   },
 
   currentMonth(): MonthlyAggregation {
