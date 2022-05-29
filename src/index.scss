@@ -6,7 +6,7 @@ html, body {
 #root {
   max-width: 400px;
   margin: 0 auto;
-  padding-bottom: 80px;
+  padding-bottom: 64px;
 
   >* {
     margin: 0 8px;
@@ -25,32 +25,11 @@ header {
   .right {
     position: absolute;
     right: 0;
-    top: 48%;
+    top: 50%;
     transform: translateY(-50%);
     i {
       margin: 8px;
     }
-  }
-}
-
-.button {
-  display: inline-block;
-  height: 28px;
-  line-height: 28px;
-  padding: 0 12px;
-  background-color: black;
-  color: white;
-  font-size: small;
-  border-radius: 4px;
-  cursor: pointer;
-  &:hover {
-    background-color: darkgray;
-  }
-  &--small {
-    height: 20px;
-    line-height: 20px;
-    padding: 0 8px;
-    font-size: x-small;
   }
 }
 
@@ -72,39 +51,42 @@ h3 {
   font-size: medium;
 }
 
-h2+p {
-  margin-top: -1rem;
-  font-size: small;
-  text-align: center;
-}
-
-.month-cursor {
+.bottom-nav {
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100vw;
+  height: 64px;
   background-color: white;
   border-top: 1px solid #ECECEC;
   box-shadow: 0 0 4px rgba(0,0,0,.1);
 
   display: flex;
-  align-items: center;
-
   justify-content: space-between;
 
+  > * {
+    align-self: center;
+  }
+
+  .indicator {
+    h2, p {
+      margin:0;
+    }
+
+    h2+p {
+      font-size: small;
+      text-align: center;
+    }
+  }
+
   .flip {
-    width: 40px;
-    margin: 8px;
-    padding: 8px 4px;
-
-    text-align: center;
-    cursor: pointer;
-
-    text-shadow: 1px 1px 2px rgba(0,0,0,.5);
-
     &--disabled {
       visibility: hidden;
       pointer-events: none;
+    }
+
+    i {
+      margin: 16px;
     }
   }
 }
