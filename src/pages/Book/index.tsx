@@ -13,12 +13,13 @@ function Book(props: Props) {
   const { isLoading, data } = props.state;
   return (
     <WithLoading if={isLoading || data == null}>{() => {
+      const entries = data!
       return (
         <div>
-          <h3>最近の40件</h3>
+          <h3>最近の{entries.length}件</h3>
           <table className="entries">
             <tbody>
-              <Repeat in={data!}>{it => (
+              <Repeat in={entries}>{it => (
                 <Fragment>
                   <tr>
                     <td className="date">{it.date}<span className="agent">@{it.agent}</span></td>
