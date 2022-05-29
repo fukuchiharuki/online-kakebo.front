@@ -16,7 +16,7 @@ import Book from 'pages/Book';
 import Entries from 'components/entry/model/Entries';
 import useEntriesQuery from 'components/entry/model/useEntriesQuery';
 
-const history = createBrowserHistory();
+const history = createBrowserHistory({ basename: "/online-kakebo.front" });
 
 function App() {
   const dataSourceParams = new DataSourceParams(history.location.search);
