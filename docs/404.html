@@ -1,17 +1,1 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <script>
-    const SEGMENT_COUNT = 1;
-    const location = window.location
-    const origin = location.origin;
-    const path = location.href.substr(origin.length + 1);
-    const segments = path.split('/');
-    const repo = segments.slice(0, SEGMENT_COUNT).join('/');
-    const param = segments.slice(SEGMENT_COUNT).join('/');
-    const url = origin + '/' + repo + '?p=' + encodeURIComponent(param);
-    location.replace(url);
-  </script>
-</head>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/online-kakebo.front/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Web site created using create-react-app"/><link rel="apple-touch-icon" href="/online-kakebo.front/logo192.png"/><link rel="manifest" href="/online-kakebo.front/manifest.json"/><title>家計簿 Viewer</title><script defer="defer" src="/online-kakebo.front/static/js/main.f89e0cc6.js"></script><link href="/online-kakebo.front/static/css/main.0d85d822.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
