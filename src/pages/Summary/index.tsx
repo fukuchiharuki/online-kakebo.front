@@ -11,7 +11,7 @@ type Props = {
   state: QueryState<Aggregation>
 };
 
-function Dashboard(props: Props) {
+function Summary(props: Props) {
   const { isLoading, data } = props.state;
   const history = useHistory();
   const location = useLocation();
@@ -37,4 +37,4 @@ function Dashboard(props: Props) {
   );
 }
 
-export default Dashboard;
+export default Summary;

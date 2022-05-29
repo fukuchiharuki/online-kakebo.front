@@ -3,7 +3,7 @@ import Center from 'components/ui/Center';
 import { createBrowserHistory } from "history";
 import DataSource from 'infrastructure/DataSource';
 import DataSourceParams from 'infrastructure/DataSourceParams';
-import Dashboard from 'pages/Dashboard';
+import Summary from 'pages/Summary';
 import { Fragment } from 'react';
 import { Route, Router } from 'react-router';
 import { QueryState } from 'infrastructure/useQuery';
@@ -52,7 +52,7 @@ function Main(props: { dataSource: DataSource }) {
 }
 
 function dashboard(state: QueryState<Aggregation>) {
-  return () => <Dashboard {...{ state }} />;
+  return () => <Summary {...{ state }} />;
 }
 
 export default App;
