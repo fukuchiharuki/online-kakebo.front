@@ -6,7 +6,7 @@ type Props = {
 
 function Amount(props: Props) {
   return (
-    <Fragment>{props.children.toLocaleString()}</Fragment>
+    <Fragment>{props.children.toLocaleString()} 円</Fragment>
   );
 }
 
