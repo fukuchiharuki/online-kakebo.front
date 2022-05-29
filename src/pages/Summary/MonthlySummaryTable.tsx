@@ -12,6 +12,7 @@ function MonthlySummaryTable(props: Props) {
   return (
     <div>
       {monthCursor}
+      <h3>月間集計</h3>
       <MonthlySummaryView>{monthlyAggregation.asSummary()}</MonthlySummaryView>
       <h3>内訳</h3>
       <MonthlyDetailsView>{monthlyAggregation}</MonthlyDetailsView>
