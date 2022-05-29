@@ -15,11 +15,21 @@ html, body {
 
 header {
   position: relative;
-  .reload {
+  
+  h1 {
+    margin: 0;
+    padding: 0;
+    line-height: 48px;
+  }
+
+  .right {
     position: absolute;
     right: 0;
-    top: 50%;
+    top: 48%;
     transform: translateY(-50%);
+    i {
+      margin: 8px;
+    }
   }
 }
 

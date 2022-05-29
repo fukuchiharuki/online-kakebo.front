@@ -8,6 +8,7 @@ import { Fragment } from 'react';
 import { Route, Router } from 'react-router';
 import { QueryState } from 'infrastructure/useQuery';
 import Aggregation from 'components/aggregation/model/Aggregation';
+import 'css.gg/icons/css/sync.css'
 
 const history = createBrowserHistory();
 
@@ -25,22 +26,26 @@ function InvalidParameters() {
 
 function EntryPoint(props: { dataSource: DataSource }) {
   const { dataSource } = props;
-  const state = useAggregationQuery(dataSource);
+  const aggregationState = useAggregationQuery(dataSource);
   return (
     <Fragment>
       <header>
-        <h1>Online KAKEBO</h1>
-        <div className="reload button button--small" onClick={() => window.location.reload()}>更新</div>
+        <h1>家計簿 Viewer</h1>
+        <div className="right" onClick={() => window.location.reload()}>
+          <i className="gg-sync" />
+        </div>
       </header>
       <hr />
       <Router history={history}>
-        <Route path="/" render={dashboard(state)} />
+        <Route path="/" render={dashboard(aggregationState)} />
       </Router>
     </Fragment>
   );
 }
 
-function dashboard(state: QueryState<Aggregation>) {
+function dashboard(
+  state: QueryState<Aggregation>,
+) {
   return () => <Dashboard {...{ state }} />;
 }
 
