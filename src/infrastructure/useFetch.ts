@@ -11,10 +11,10 @@ export default function useFetch(url: string, interceptor?: Interceptor) {
       if (response.ok) {
         const json = await response.json()
         postProcess && postProcess(json)
-        console.log(`ok`)
+        //console.log(`ok`)
       } else {
         errorHandler && errorHandler(response.status)
-        console.log(`error`)
+        //console.log(`error`)
       }
     })()
   }, [url, preProcess, postProcess, errorHandler])
