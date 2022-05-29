@@ -15,20 +15,27 @@ html, body {
 
 header {
   position: relative;
+  height: 64px;
   
+  display: flex;
+  justify-content: space-between;
+
+  > * {
+    align-self: center;
+    box-sizing: border-box;
+  }
+
   h1 {
     margin: 0;
     padding: 0;
     line-height: 48px;
   }
 
-  .right {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    i {
-      margin: 8px;
+  .button {
+    padding: 8px;
+
+    &:first-child {
+      width: 36px;
     }
   }
 }
