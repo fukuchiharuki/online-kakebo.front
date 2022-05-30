@@ -42,8 +42,7 @@ const extension = {
     return this.data
       .map((it) => it.accountItem)
       .reduce(
-        (acc, type) =>
-          acc.includes(type) ? acc : acc.concat(type),
+        (acc, type) => (acc.includes(type) ? acc : acc.concat(type)),
         [] as AccountItemType[]
       )
   },

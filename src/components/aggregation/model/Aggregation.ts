@@ -97,12 +97,13 @@ const extension = {
   },
 
   推移ChartData(): ChartData {
-    
     const labels = this.map((it) => it.month).slice(-12)
     const types = this[this.length - 1].accountItemTypes()
     const datasets = types.map((type, i) => ({
       label: type,
-      data: this.map((it) => it.filterByAccountItemType(type).totalAmount()).slice(-12),
+      data: this.map((it) =>
+        it.filterByAccountItemType(type).totalAmount()
+      ).slice(-12),
       backgroundColor: manyColors[i],
       borderColor: manyColors[i],
       hidden: specOf(type).hidden(),
