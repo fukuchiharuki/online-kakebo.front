@@ -1,6 +1,6 @@
 {
   "name": "online-kakebo.front",
-  "version": "0.2.0-10",
+  "version": "0.3.0-11",
   "private": true,
   "homepage": "./",
   "dependencies": {
