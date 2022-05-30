@@ -16,7 +16,7 @@ function Book(props: Props) {
       const entries = data!
       return (
         <div>
-          <h3>最近の{entries.length}件</h3>
+          <h3>直近の{entries.length}件</h3>
           <table className="entries">
             <tbody>
               <Repeat in={entries}>{it => (
