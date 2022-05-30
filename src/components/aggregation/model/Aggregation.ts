@@ -98,7 +98,7 @@ const extension = {
 
   推移ChartData(): ChartData {
     const labels = this.map((it) => it.month).slice(-12)
-    const types = this[this.length - 1].accountItemTypes()
+    const types = this[this.length - 1].accountItemTypes().filter((it) => !specOf(it).is収入())
     const datasets = types.map((type, i) => ({
       label: type,
       data: this.map((it) =>
