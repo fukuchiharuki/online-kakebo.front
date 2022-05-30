@@ -6,9 +6,13 @@ const menu: MenuItem[] = [
     icon: 'gg-clipboard',
   },
   {
+    path: '/chart',
+    icon: 'gg-trending',
+  },
+  {
     path: '/book',
     icon: 'gg-view-list',
-  }
+  },
 ]
 
 class Menu {
