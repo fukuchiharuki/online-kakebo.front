@@ -20,60 +20,70 @@ export function specOf(accountItemType: AccountItemType) {
         is収入: () => false,
         is特別費: () => false,
         category: () => AccountItemType.食費,
+        hidden: () => false,
       }
     case AccountItemType.食費_個別:
       return {
         is収入: () => false,
         is特別費: () => false,
         category: () => AccountItemType.食費,
+        hidden: () => false,
       }
     case AccountItemType.日用品費:
       return {
         is収入: () => false,
         is特別費: () => false,
         category: () => AccountItemType.日用品費,
+        hidden: () => false,
       }
     case AccountItemType.娯楽費:
       return {
         is収入: () => false,
         is特別費: () => false,
         category: () => AccountItemType.娯楽費,
+        hidden: () => false,
       }
     case AccountItemType.医療費:
       return {
         is収入: () => false,
         is特別費: () => false,
         category: () => AccountItemType.医療費,
+        hidden: () => true,
       }
     case AccountItemType.水道光熱費:
       return {
         is収入: () => false,
         is特別費: () => false,
         category: () => AccountItemType.水道光熱費,
+        hidden: () => true,
       }
     case AccountItemType.通信費:
       return {
         is収入: () => false,
         is特別費: () => false,
         category: () => AccountItemType.通信費,
+        hidden: () => true,
       }
     case AccountItemType.住居費:
       return {
         is収入: () => false,
         is特別費: () => false,
         category: () => AccountItemType.住居費,
+        hidden: () => true,
       }
     case AccountItemType.特別費:
       return {
         is収入: () => false,
         is特別費: () => true,
         category: () => AccountItemType.特別費,
+        hidden: () => true,
       }
     case AccountItemType.元入金:
       return {
         is収入: () => true,
         is特別費: () => false,
         category: () => AccountItemType.元入金,
+        hidden: () => true,
       }
   }
 }

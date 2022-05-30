@@ -1,3 +1,4 @@
+import { specOf } from './AccountItemType'
 import CursorRange from './CursorRange'
 import MonthlyAggregation, { asMonthlyAggregation } from './MonthlyAggregation'
 
@@ -9,6 +10,7 @@ type Aggregation = {
   差引累計Data(): number[]
   差引累計ChartData(): ChartData
   収支ChartData(): ChartData
+  推移ChartData(): ChartData
 } & Array<MonthlyAggregation>
 
 export default Aggregation
@@ -93,6 +95,20 @@ const extension = {
       ],
     }
   },
+
+  推移ChartData(): ChartData {
+    
+    const labels = this.map((it) => it.month).slice(-12)
+    const types = this[this.length - 1].accountItemTypes()
+    const datasets = types.map((type, i) => ({
+      label: type,
+      data: this.map((it) => it.filterByAccountItemType(type).totalAmount()).slice(-12),
+      backgroundColor: manyColors[i],
+      borderColor: manyColors[i],
+      hidden: specOf(type).hidden(),
+    }))
+    return { labels, datasets }
+  },
 } as Aggregation
 
 const colors = [
@@ -100,6 +116,19 @@ const colors = [
   'rgb(111, 192, 136)',
   'rgb(212, 180, 131)',
   'rgb(145, 119, 64)',
+]
+
+const manyColors = [
+  'rgb(51, 34, 136)',
+  'rgb(136, 204, 238)',
+  'rgb(68, 170, 153)',
+  'rgb(17, 119, 51)',
+  'rgb(221, 204, 119)',
+  'rgb(204, 102, 119)',
+  'rgb(136, 34, 58)',
+  'rgb(170, 68, 153)',
+  'rgb(221, 221, 221)',
+  'rgb(0, 0, 0)',
 ]
 
 type ChartData = {
@@ -110,5 +139,6 @@ type ChartData = {
     backgroundColor?: string
     borderColor?: string
     stack?: string
+    hidden?: boolean
   }[]
 }

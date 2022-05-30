@@ -7,6 +7,7 @@ type MonthlyAggregation = {
   data: AccountItem[]
   asSummary(): MonthlySummary
   totalAmount(): number
+  accountItemTypes(): AccountItemType[]
   categories(): AccountItemType[]
   filterByCategory(accountItemType: AccountItemType): MonthlyAggregation
   filterByAccountItemType(accountItemType: AccountItemType): MonthlyAggregation
@@ -35,6 +36,16 @@ const extension = {
     return this.data
       .map((it) => it.amount)
       .reduce((acc, amount) => acc + amount, 0)
+  },
+
+  accountItemTypes(): AccountItemType[] {
+    return this.data
+      .map((it) => it.accountItem)
+      .reduce(
+        (acc, type) =>
+          acc.includes(type) ? acc : acc.concat(type),
+        [] as AccountItemType[]
+      )
   },
 
   categories(): AccountItemType[] {
