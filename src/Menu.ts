@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from 'react'
 
 const menu: MenuItem[] = [
   {
@@ -16,11 +16,9 @@ const menu: MenuItem[] = [
 ]
 
 class Menu {
-  cursor!: number;
+  cursor!: number
 
-  constructor(
-    cursor: number = 0
-  ) {
+  constructor(cursor: number = 0) {
     this.cursor = cursor
   }
 
@@ -53,7 +51,9 @@ function initialMenu(pathname: string): Menu {
 }
 
 function initialCursor(pathname: string): number {
-  const targetMenuItem = [...menu].reverse().find(it => pathname.indexOf(it.path) === 0)
+  const targetMenuItem = [...menu]
+    .reverse()
+    .find((it) => pathname.indexOf(it.path) === 0)
   if (targetMenuItem == null) return 0
   return menu.indexOf(targetMenuItem)
 }

@@ -1,12 +1,12 @@
-import AccountItemType from "components/aggregation/model/AccountItemType"
+import AccountItemType from 'components/aggregation/model/AccountItemType'
 
 type Entry = {
-  timestamp: string,
-  date: string,
-  amount: number,
-  accountItem: AccountItemType,
-  note: string, // 空文字列 if 空
-  agent: string,
+  timestamp: string
+  date: string
+  amount: number
+  accountItem: AccountItemType
+  note: string // 空文字列 if 空
+  agent: string
 }
 
 export default Entry

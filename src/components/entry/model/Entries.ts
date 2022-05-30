@@ -1,4 +1,4 @@
-import Entry, { asEntry } from "./Entry"
+import Entry, { asEntry } from './Entry'
 
 type Entries = {
   // nothing
@@ -7,9 +7,7 @@ type Entries = {
 export default Entries
 
 export function asEntries(o: any): Entries {
-  const newObject = Object.create(
-    o.map((it: any) => asEntry(it))
-  )
+  const newObject = Object.create(o.map((it: any) => asEntry(it)))
   Object.assign(newObject, extension)
   return newObject
 }

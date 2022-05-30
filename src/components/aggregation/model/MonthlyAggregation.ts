@@ -20,7 +20,7 @@ export default MonthlyAggregation
 export function asMonthlyAggregation(o: any): MonthlyAggregation {
   const newObject = Object.create({
     ...o,
-    data: o.data.map((it: any) => asAccountItem(it))
+    data: o.data.map((it: any) => asAccountItem(it)),
   })
   Object.assign(newObject, extension)
   return newObject
