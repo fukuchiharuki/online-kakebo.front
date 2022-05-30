@@ -21,7 +21,7 @@ function MonthlyDetailsView(props: Props) {
             <dt>{it}<Mount if={diff}>*</Mount></dt>
             <dd><Amount>{acountItemTypeAmount}</Amount></dd>
             <Mount if={diff}>
-              <dd>*{it}のすべて: <Amount>{categoryTotalAmount}</Amount></dd>
+              <dd>*{it}すべて: <Amount>{categoryTotalAmount}</Amount></dd>
             </Mount>
           </Fragment>
         );
