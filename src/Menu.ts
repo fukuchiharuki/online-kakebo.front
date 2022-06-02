@@ -10,6 +10,10 @@ const menu: MenuItem[] = [
     icon: 'gg-trending',
   },
   {
+    path: '/pie',
+    icon: 'gg-chart',
+  },
+  {
     path: '/book',
     icon: 'gg-view-list',
   },

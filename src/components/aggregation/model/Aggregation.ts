@@ -11,6 +11,7 @@ type Aggregation = {
   差引累計ChartData(): ChartData
   収支ChartData(): ChartData
   推移ChartData(): ChartData
+  特別費を除く支出ChartData(months: number): ChartData
 } & Array<MonthlyAggregation>
 
 export default Aggregation
@@ -112,6 +113,24 @@ const extension = {
     }))
     return { labels, datasets }
   },
+
+  特別費を除く支出ChartData(months: number): ChartData {
+    const labels = this[this.length - 1]
+      .categories()
+      .filter((it) => !specOf(it).is収入() && !specOf(it).is特別費())
+    const data = labels.map((category, i) => {
+      const amounts = this.map((it) => it.filterByCategory(category).totalAmount()).slice(-(months + 1)).slice(0, months)
+      return amounts.reduce((acc, a) => acc + a)/amounts.length
+    })
+    return {
+      labels,
+      datasets: [{
+        label: '支出',
+        data,
+        backgroundColor: manyColors.filter((_, i) => i !== 1),
+      }]
+    }
+  },
 } as Aggregation
 
 const colors = [
@@ -139,7 +158,7 @@ type ChartData = {
   datasets: {
     label: string
     data: number[]
-    backgroundColor?: string
+    backgroundColor?: string | string[]
     borderColor?: string
     stack?: string
     hidden?: boolean

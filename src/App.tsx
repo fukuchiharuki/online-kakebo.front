@@ -11,12 +11,14 @@ import Aggregation from 'components/aggregation/model/Aggregation';
 import 'css.gg/icons/css/sync.css'
 import 'css.gg/icons/css/clipboard.css'
 import 'css.gg/icons/css/trending.css'
+import 'css.gg/icons/css/chart.css'
 import 'css.gg/icons/css/view-list.css'
 import useMenu from 'Menu';
 import Book from 'pages/Book';
 import Entries from 'components/entry/model/Entries';
 import useEntriesQuery from 'components/entry/model/useEntriesQuery';
 import Chart from 'pages/Chart';
+import PieChart from 'pages/PieChart';
 
 const history = createBrowserHistory({ basename: "/online-kakebo.front" });
 
@@ -57,6 +59,7 @@ function Main(props: { dataSource: DataSource }) {
       <Router history={history}>
         <Route exact path="/" render={summary(aggregationState)} />
         <Route exact path="/chart" render={chart(aggregationState)} />
+        <Route exact path="/pie" render={pie(aggregationState)} />
         <Route exact path="/book" render={book(entriesState)} />
       </Router>
     </Fragment>
@@ -69,6 +72,10 @@ function summary(state: QueryState<Aggregation>) {
 
 function chart(state: QueryState<Aggregation>) {
   return () => <Chart {...{ state }} />;
+}
+
+function pie(state: QueryState<Aggregation>) {
+  return () => <PieChart {...{ state }} />;
 }
 
 function book(state: QueryState<Entries>) {
