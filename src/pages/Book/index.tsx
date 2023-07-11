@@ -22,8 +22,10 @@ function Book(props: Props) {
               <Repeat in={entries}>{it => (
                 <Fragment>
                   <tr>
-                    <td className="date">{it.date}<span className="agent">@{it.agent}</span></td>
-                    <td className="timestamp" colSpan={2}>{it.timestamp}</td>
+                    <td className="date">{it.date}</td>
+                    <td className="timestamp" colSpan={2}>
+                      {it.agent}@{it.timestamp}
+                    </td>
                   </tr>
                   <tr className="bottom">
                     <td className="note">{it.note}</td>
