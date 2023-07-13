@@ -1,6 +1,6 @@
 enum AccountItemType {
   食費 = '食費',
-  食費_個別 = '食費(個別)',
+  食費_外食等 = '食費(外食等)',
   日用品費 = '日用品費',
   娯楽費 = '娯楽費',
   医療費 = '医療費',
@@ -36,7 +36,7 @@ export function specOf(accountItemType: AccountItemType) {
         excluded: () => false, // true if 折れ線で除外する
         shortName: () => "食費",
       }
-    case AccountItemType.食費_個別:
+    case AccountItemType.食費_外食等:
       return {
         is収入: () => false,
         is特別費: () => false,
@@ -44,7 +44,7 @@ export function specOf(accountItemType: AccountItemType) {
         list: () => true,
         hidden: () => false,
         excluded: () => false,
-        shortName: () => "個別",
+        shortName: () => "外食等",
       }
     case AccountItemType.日用品費:
       return {
@@ -143,7 +143,7 @@ export function specOf(accountItemType: AccountItemType) {
         category: () => AccountItemType.特別費,
         list: () => true,
         hidden: () => true,
-        excluded: () => true,
+        excluded: () => false,
         shortName: () => "特別費",
       }
     case AccountItemType.元入金:
