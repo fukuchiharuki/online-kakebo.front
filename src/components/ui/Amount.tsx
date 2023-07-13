@@ -5,8 +5,10 @@ type Props = {
 };
 
 function Amount(props: Props) {
+  const amount = props.children;
+  const amountLabel = (amount < 0)? `▲${(-amount).toLocaleString()}`: amount.toLocaleString();
   return (
-    <Fragment>{props.children.toLocaleString()} 円</Fragment>
+    <Fragment>{amountLabel} 円</Fragment>
   );
 }
 
