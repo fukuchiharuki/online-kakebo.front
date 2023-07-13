@@ -111,13 +111,21 @@ h3 {
   dt {
     padding: 0 4px;
     font-size: small;
+
+    +dd {
+      +dd {
+        padding-top: 2px;
+      }
+    }
   }
 
   dd {
     text-align: right;
 
     +dd {
+      padding-right: 2px;
       font-size: small;
+      color: gray;
     }
   }
 }
