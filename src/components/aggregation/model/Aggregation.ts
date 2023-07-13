@@ -102,8 +102,9 @@ const extension = {
     const types = this[this.length - 1]
       .accountItemTypes()
       .filter((it) => !specOf(it).is収入())
+      .filter((it) => !specOf(it).excluded())
     const datasets = types.map((type, i) => ({
-      label: type,
+      label: specOf(type).shortName(),
       data: this.map((it) =>
         it.filterByAccountItemType(type).totalAmount()
       ).slice(-12),
@@ -127,7 +128,7 @@ const extension = {
       datasets: [{
         label: '支出',
         data,
-        backgroundColor: manyColors.filter((_, i) => i !== 1),
+        backgroundColor: pieColors,
       }]
     }
   },
@@ -142,14 +143,26 @@ const colors = [
 
 const manyColors = [
   'rgb(51, 34, 136)',
-  'rgb(136, 204, 238)',
   'rgb(68, 170, 153)',
   'rgb(17, 119, 51)',
+  'rgb(170, 68, 153)',
+  'rgb(204, 102, 119)',
   'rgb(221, 204, 119)',
+  'rgb(136, 34, 58)',
+  'rgb(136, 204, 238)',
+  'rgb(221, 221, 221)',
+  'rgb(0, 0, 0)',
+]
+
+const pieColors = [
+  'rgb(51, 34, 136)',
+  'rgb(17, 119, 51)',
+  'rgb(170, 68, 153)',
   'rgb(204, 102, 119)',
   'rgb(136, 34, 58)',
-  'rgb(170, 68, 153)',
+  'rgb(221, 204, 119)',
   'rgb(221, 221, 221)',
+  'rgb(136, 204, 238)',
   'rgb(0, 0, 0)',
 ]
 

@@ -17,6 +17,7 @@ function MonthlyDetailsView(props: Props) {
         const categoryTotalAmount = monthlyAggregation.filterByCategory(it).totalAmount();
         const subAccountItemsAmounts = valuesOf(it).map((item) => ({
           name: specOf(item).shortName(),
+          list: specOf(item).list(),
           value: monthlyAggregation.filterByAccountItemType(item).totalAmount()
         }))
         const hasSubAccountItems = subAccountItemsAmounts.length > 1
@@ -26,9 +27,9 @@ function MonthlyDetailsView(props: Props) {
             <dd><Amount>{categoryTotalAmount}</Amount></dd>
             <Mount if={hasSubAccountItems}>
               <Repeat in={subAccountItemsAmounts}>{ it =>
-                <Fragment>
+                <Mount if={it.list}>
                   <dd>{it.name}: <Amount>{it.value}</Amount></dd>
-                </Fragment>
+                </Mount>
               }</Repeat>
             </Mount>
           </Fragment>
