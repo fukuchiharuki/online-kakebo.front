@@ -1,18 +1,16 @@
-import FadeIn from './FadeIn';
-import Loading from "./Loading";
+import FadeIn from './FadeIn'
+import Loading from './Loading'
 
 type Props = {
-  if: any,
+  if: any
   children: any
-};
-
-function WithLoading(props: Props) {
-  if (props.if) return <Loading />;
-  const children =
-    (typeof props.children === "function")
-      ? props.children()
-      : props.children;
-  return <FadeIn>{children}</FadeIn>;
 }
 
-export default WithLoading;
+function WithLoading(props: Props) {
+  if (props.if) return <Loading />
+  const children =
+    typeof props.children === 'function' ? props.children() : props.children
+  return <FadeIn>{children}</FadeIn>
+}
+
+export default WithLoading

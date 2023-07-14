@@ -1,9 +1,11 @@
-import Aggregation, { ChartData } from 'components/aggregation/model/Aggregation'
+import Aggregation, {
+  ChartData,
+} from 'components/aggregation/model/Aggregation'
+import AccountItemType from 'components/aggregation/model/AccountItemType'
 import WithLoading from 'components/ui/WithLoading'
 import { QueryState } from 'infrastructure/useQuery'
 import { Pie } from 'react-chartjs-2'
 import { Chart as ChartJs, registerables } from 'chart.js'
-import AccountItemType from '../../components/aggregation/model/AccountItemType';
 ChartJs.register(...registerables)
 
 type Props = {
@@ -43,7 +45,7 @@ function rate(type: AccountItemType, chartData: ChartData) {
   const index = chartData.labels.indexOf(type)
   const amount = chartData.datasets[0].data[index]
   const total = chartData.datasets[0].data.reduce((acc, a) => acc + a, 0)
-  const rate = 100 * amount / total
+  const rate = (100 * amount) / total
   return parseFloat(rate.toFixed(1))
 }
 

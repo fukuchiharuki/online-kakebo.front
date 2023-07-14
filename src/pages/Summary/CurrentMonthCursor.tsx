@@ -1,6 +1,6 @@
-import CursorRange from 'components/aggregation/model/CursorRange';
-import Today from 'components/date/model/Today';
-import CursorParams from './CursorParams';
+import CursorRange from 'components/aggregation/model/CursorRange'
+import Today from 'components/date/model/Today'
+import CursorParams from './CursorParams'
 import 'css.gg/icons/css/push-chevron-left.css'
 import 'css.gg/icons/css/push-chevron-right.css'
 
@@ -12,9 +12,11 @@ type Props = {
 }
 
 function CurrentMonthCursor(props: Props) {
-  const { cursorParams, cursorRange, onPrevClick, onNextClick } = props;
-  const prevClassNames = (cursorParams.hasPrev(cursorRange)? ["flip"]:  ["flip", "flip--disabled"]).join(" ");
-  const nextClassNames = "flip flip--disabled";
+  const { cursorParams, cursorRange, onPrevClick, onNextClick } = props
+  const prevClassNames = (
+    cursorParams.hasPrev(cursorRange) ? ['flip'] : ['flip', 'flip--disabled']
+  ).join(' ')
+  const nextClassNames = 'flip flip--disabled'
   return (
     <div className="bottom-nav">
       <div className={prevClassNames} onClick={onPrevClick}>
@@ -28,7 +30,7 @@ function CurrentMonthCursor(props: Props) {
         <i className="gg-push-chevron-right" />
       </div>
     </div>
-  );
+  )
 }
 
-export default CurrentMonthCursor;
+export default CurrentMonthCursor

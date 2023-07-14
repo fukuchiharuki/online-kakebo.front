@@ -1,48 +1,51 @@
-import useAggregationQuery from 'components/aggregation/model/useAggregationQuery';
-import Center from 'components/ui/Center';
-import { createBrowserHistory } from "history";
-import DataSource from 'infrastructure/DataSource';
-import DataSourceParams from 'infrastructure/DataSourceParams';
-import Summary from 'pages/Summary';
-import { Fragment } from 'react';
-import { Route, Router } from 'react-router';
-import { QueryState } from 'infrastructure/useQuery';
-import Aggregation from 'components/aggregation/model/Aggregation';
+import useAggregationQuery from 'components/aggregation/model/useAggregationQuery'
+import Center from 'components/ui/Center'
+import { createBrowserHistory } from 'history'
+import DataSource from 'infrastructure/DataSource'
+import DataSourceParams from 'infrastructure/DataSourceParams'
+import Summary from 'pages/Summary'
+import { Fragment } from 'react'
+import { Route, Router } from 'react-router'
+import { QueryState } from 'infrastructure/useQuery'
+import Aggregation from 'components/aggregation/model/Aggregation'
 import 'css.gg/icons/css/sync.css'
 import 'css.gg/icons/css/clipboard.css'
 import 'css.gg/icons/css/trending.css'
 import 'css.gg/icons/css/chart.css'
 import 'css.gg/icons/css/view-list.css'
-import useMenu from 'Menu';
-import Book from 'pages/Book';
-import Entries from 'components/entry/model/Entries';
-import useEntriesQuery from 'components/entry/model/useEntriesQuery';
-import Chart from 'pages/Chart';
-import PieChart from 'pages/PieChart';
+import useMenu from 'Menu'
+import Book from 'pages/Book'
+import Entries from 'components/entry/model/Entries'
+import useEntriesQuery from 'components/entry/model/useEntriesQuery'
+import Chart from 'pages/Chart'
+import PieChart from 'pages/PieChart'
 
-const history = createBrowserHistory({ basename: "/online-kakebo.front" });
+const history = createBrowserHistory({ basename: '/online-kakebo.front' })
 
 function App() {
-  const dataSourceParams = new DataSourceParams(history.location.search);
-  if (!dataSourceParams.validate()) return <InvalidParameters />;
-  const dataSource = dataSourceParams.dataSource();
-  return <Main {...{ dataSource }} />;
+  const dataSourceParams = new DataSourceParams(history.location.search)
+  if (!dataSourceParams.validate()) return <InvalidParameters />
+  const dataSource = dataSourceParams.dataSource()
+  return <Main {...{ dataSource }} />
 }
 
 function InvalidParameters() {
-  console.error("invalid parameters.");
-  return <Center>๐·°(৹˃ᗝ˂৹)°·๐</Center>;
+  console.error('invalid parameters.')
+  return <Center>๐·°(৹˃ᗝ˂৹)°·๐</Center>
 }
 
 function Main(props: { dataSource: DataSource }) {
-  const { dataSource } = props;
-  const aggregationState = useAggregationQuery(dataSource);
-  const entriesState = useEntriesQuery(dataSource);
-  const [menu, next] = useMenu(history.location.pathname);
+  const { dataSource } = props
+  const aggregationState = useAggregationQuery(dataSource)
+  const entriesState = useEntriesQuery(dataSource)
+  const [menu, next] = useMenu(history.location.pathname)
   const nextMenuItem = menu.nextMenuItem()
   const onMenuClick = () => {
     next()
-    history.push({ pathname: nextMenuItem.path, search: history.location.search })
+    history.push({
+      pathname: nextMenuItem.path,
+      search: history.location.search,
+    })
   }
   return (
     <Fragment>
@@ -63,23 +66,23 @@ function Main(props: { dataSource: DataSource }) {
         <Route exact path="/book" render={book(entriesState)} />
       </Router>
     </Fragment>
-  );
+  )
 }
 
 function summary(state: QueryState<Aggregation>) {
-  return () => <Summary {...{ state }} />;
+  return () => <Summary {...{ state }} />
 }
 
 function chart(state: QueryState<Aggregation>) {
-  return () => <Chart {...{ state }} />;
+  return () => <Chart {...{ state }} />
 }
 
 function pie(state: QueryState<Aggregation>) {
-  return () => <PieChart {...{ state }} />;
+  return () => <PieChart {...{ state }} />
 }
 
 function book(state: QueryState<Entries>) {
-  return () => <Book {...{ state }} />;
+  return () => <Book {...{ state }} />
 }
 
-export default App;
+export default App
