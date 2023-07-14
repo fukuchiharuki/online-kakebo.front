@@ -177,3 +177,29 @@ table.entries {
     padding-left: 8px;
   }
 }
+
+.coefficient {
+  text-align: center;
+  font-size: small;
+
+  dt, dd {
+    display: inline-block;
+  }
+
+  dt{
+    text-align: right;
+
+    &::after {
+      content: ':'
+    }
+  }
+
+  dd {
+    margin-left: 4px;
+    text-align: left;
+
+    &::after {
+      content: '%';
+    }
+  }
+}
