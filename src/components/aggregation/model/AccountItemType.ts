@@ -4,6 +4,7 @@ enum AccountItemType {
   日用品費 = '日用品費',
   娯楽費 = '娯楽費',
   医療費 = '医療費',
+  子育て費用 = '子育て費用',
   水道光熱費 = '水道光熱費',
   水道光熱費_電気 = '水道光熱費(電気)',
   水道光熱費_ガス = '水道光熱費(ガス)',
@@ -43,18 +44,27 @@ export function specOf(accountItemType: AccountItemType) {
         ...defaultSpec,
         shortName: () => '日用品費',
         category: () => AccountItemType.日用品費,
+        hidden: () => true,
       }
     case AccountItemType.娯楽費:
       return {
         ...defaultSpec,
         shortName: () => '娯楽費',
         category: () => AccountItemType.娯楽費,
+        hidden: () => true,
       }
     case AccountItemType.医療費:
       return {
         ...defaultSpec,
         shortName: () => '医療費',
         category: () => AccountItemType.医療費,
+        hidden: () => true,
+      }
+    case AccountItemType.子育て費用:
+      return {
+        ...defaultSpec,
+        shortName: () => '子育て費用',
+        category: () => AccountItemType.子育て費用,
         hidden: () => true,
       }
     case AccountItemType.水道光熱費:

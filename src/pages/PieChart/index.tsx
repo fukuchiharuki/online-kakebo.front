@@ -26,12 +26,18 @@ function PieChart(props: Props) {
             <dl className="coefficient">
               <dt>エンゲル係数</dt>
               <dd>{rate(AccountItemType.食費, 支出1ヶ月分ChartData)}</dd>
+              <br />
+              <dt>エンジェル係数</dt>
+              <dd>{rate(AccountItemType.子育て費用, 支出1ヶ月分ChartData)}</dd>
             </dl>
             <Pie data={支出1ヶ月分ChartData} />
             <h3>先月から{12}ヶ月分の支出平均</h3>
             <dl className="coefficient">
               <dt>エンゲル係数</dt>
               <dd>{rate(AccountItemType.食費, 支出12ヶ月分ChartData)}</dd>
+              <br />
+              <dt>エンジェル係数</dt>
+              <dd>{rate(AccountItemType.子育て費用, 支出12ヶ月分ChartData)}</dd>
             </dl>
             <Pie data={支出12ヶ月分ChartData} />
           </div>
