@@ -11,7 +11,7 @@ type Aggregation = {
   差引累計ChartData(): ChartData
   収支ChartData(): ChartData
   推移ChartData(): ChartData
-  特別費を除く支出ChartData(months: number): ChartData
+  支出ChartData(months: number): ChartData
 } & Array<MonthlyAggregation>
 
 export default Aggregation
@@ -115,21 +115,27 @@ const extension = {
     return { labels, datasets }
   },
 
-  特別費を除く支出ChartData(months: number): ChartData {
+  支出ChartData(months: number): ChartData {
     const labels = this[this.length - 1]
       .categories()
-      .filter((it) => !specOf(it).is収入() && !specOf(it).is特別費())
+      .filter((it) => !specOf(it).is収入())
     const data = labels.map((category, i) => {
-      const amounts = this.map((it) => it.filterByCategory(category).totalAmount()).slice(-(months + 1)).slice(0, months)
-      return amounts.reduce((acc, a) => acc + a)/amounts.length
+      const amounts = this.map((it) =>
+        it.filterByCategory(category).totalAmount()
+      )
+        .slice(-(months + 1))
+        .slice(0, months)
+      return amounts.reduce((acc, a) => acc + a) / amounts.length
     })
     return {
       labels,
-      datasets: [{
-        label: '支出',
-        data,
-        backgroundColor: pieColors,
-      }]
+      datasets: [
+        {
+          label: '支出',
+          data,
+          backgroundColor: pieColors,
+        },
+      ],
     }
   },
 } as Aggregation
@@ -147,9 +153,9 @@ const manyColors = [
   'rgb(17, 119, 51)',
   'rgb(170, 68, 153)',
   'rgb(204, 102, 119)',
+  'rgb(136, 204, 238)',
   'rgb(221, 204, 119)',
   'rgb(136, 34, 58)',
-  'rgb(136, 204, 238)',
   'rgb(221, 221, 221)',
   'rgb(0, 0, 0)',
 ]
@@ -159,14 +165,15 @@ const pieColors = [
   'rgb(17, 119, 51)',
   'rgb(170, 68, 153)',
   'rgb(204, 102, 119)',
+  'rgb(136, 204, 238)',
   'rgb(136, 34, 58)',
   'rgb(221, 204, 119)',
   'rgb(221, 221, 221)',
-  'rgb(136, 204, 238)',
+  'rgb(221, 221, 221)',
   'rgb(0, 0, 0)',
 ]
 
-type ChartData = {
+export type ChartData = {
   labels: string[]
   datasets: {
     label: string

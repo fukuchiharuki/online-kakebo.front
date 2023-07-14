@@ -1,6 +1,6 @@
-import MonthlyAggregation from 'components/aggregation/model/MonthlyAggregation';
-import MonthlyDetailsView from 'components/aggregation/MonthlyDetailsView';
-import MonthlySummaryView from 'components/aggregation/MonthlySummaryView';
+import MonthlyAggregation from 'components/aggregation/model/MonthlyAggregation'
+import MonthlyDetailsView from 'components/aggregation/MonthlyDetailsView'
+import MonthlySummaryView from 'components/aggregation/MonthlySummaryView'
 
 type Props = {
   monthCursor: React.ReactNode
@@ -8,7 +8,7 @@ type Props = {
 }
 
 function MonthlySummaryTable(props: Props) {
-  const { monthCursor, monthlyAggregation } = props;
+  const { monthCursor, monthlyAggregation } = props
   return (
     <div>
       {monthCursor}
@@ -17,7 +17,7 @@ function MonthlySummaryTable(props: Props) {
       <h3>内訳</h3>
       <MonthlyDetailsView>{monthlyAggregation}</MonthlyDetailsView>
     </div>
-  );
+  )
 }
 
-export default MonthlySummaryTable;
+export default MonthlySummaryTable
