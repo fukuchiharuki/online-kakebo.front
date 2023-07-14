@@ -120,16 +120,22 @@ const extension = {
       .categories()
       .filter((it) => !specOf(it).is収入())
     const data = labels.map((category, i) => {
-      const amounts = this.map((it) => it.filterByCategory(category).totalAmount()).slice(-(months + 1)).slice(0, months)
-      return amounts.reduce((acc, a) => acc + a)/amounts.length
+      const amounts = this.map((it) =>
+        it.filterByCategory(category).totalAmount()
+      )
+        .slice(-(months + 1))
+        .slice(0, months)
+      return amounts.reduce((acc, a) => acc + a) / amounts.length
     })
     return {
       labels,
-      datasets: [{
-        label: '支出',
-        data,
-        backgroundColor: pieColors,
-      }]
+      datasets: [
+        {
+          label: '支出',
+          data,
+          backgroundColor: pieColors,
+        },
+      ],
     }
   },
 } as Aggregation
