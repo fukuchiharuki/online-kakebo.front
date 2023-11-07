@@ -18,28 +18,37 @@ function PieChart(props: Props) {
     <WithLoading if={isLoading || data == null}>
       {() => {
         const aggregation = data!
-        const 支出1ヶ月分ChartData = aggregation.支出ChartData(1)
-        const 支出12ヶ月分ChartData = aggregation.支出ChartData(12)
+        const 支出割合ChartData = new Map<number, ChartData>()
+        支出割合ChartData.set(1, aggregation.支出ChartData(1))
+        支出割合ChartData.set(3, aggregation.支出ChartData(3))
+        支出割合ChartData.set(6, aggregation.支出ChartData(6))
+        支出割合ChartData.set(12, aggregation.支出ChartData(12))
         return (
           <div>
-            <h3>先月分の支出</h3>
+            <h3>先月分の支出割合</h3>
             <dl className="coefficient">
               <dt>エンゲル係数</dt>
-              <dd>{rate(AccountItemType.食費, 支出1ヶ月分ChartData)}</dd>
+              <dd>{rate(AccountItemType.食費, 支出割合ChartData.get(1)!)}</dd>
               <br />
               <dt>エンジェル係数</dt>
-              <dd>{rate(AccountItemType.子育て費用, 支出1ヶ月分ChartData)}</dd>
+              <dd>{rate(AccountItemType.子育て費用, 支出割合ChartData.get(1)!)}</dd>
             </dl>
-            <Pie data={支出1ヶ月分ChartData} />
-            <h3>先月から{12}ヶ月分の支出平均</h3>
-            <dl className="coefficient">
-              <dt>エンゲル係数</dt>
-              <dd>{rate(AccountItemType.食費, 支出12ヶ月分ChartData)}</dd>
-              <br />
-              <dt>エンジェル係数</dt>
-              <dd>{rate(AccountItemType.子育て費用, 支出12ヶ月分ChartData)}</dd>
-            </dl>
-            <Pie data={支出12ヶ月分ChartData} />
+            <Pie data={支出割合ChartData.get(1)!} />
+            {
+              [3, 6, 12].map((months, index) => (
+                <div key={index}>
+                  <h3 className='mt'>先月から{months}ヶ月分の支出割合平均</h3>
+                  <dl className="coefficient">
+                    <dt>エンゲル係数</dt>
+                    <dd>{rate(AccountItemType.食費, 支出割合ChartData.get(months)!)}</dd>
+                    <br />
+                    <dt>エンジェル係数</dt>
+                    <dd>{rate(AccountItemType.子育て費用, 支出割合ChartData.get(months)!)}</dd>
+                  </dl>
+                  <Pie data={支出割合ChartData.get(months)!} />
+                </div>
+              ))
+            }
           </div>
         )
       }}

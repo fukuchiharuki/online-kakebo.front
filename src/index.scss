@@ -65,6 +65,10 @@ h1, h2 {
 
 h3 {
   font-size: medium;
+
+  &.mt {
+    margin-top: 32px;
+  }
 }
 
 .bottom-nav {
@@ -145,7 +149,7 @@ h3 {
 table.entries {
   margin-top: 16px;
   width: 100%;
-  font-size: small;
+  font-size: x-small;
 
   tr.bottom {
     td {
@@ -162,11 +166,10 @@ table.entries {
   .timestamp {
     text-align: right;
     color: lightgray;
-    font-size: x-small;
   }
 
   .note {
-    padding-left: 8px;
+    padding-left: 4px;
   }
 
   .amount {
@@ -174,7 +177,7 @@ table.entries {
   }
 
   .account-item {
-    padding-left: 8px;
+    padding-left: 4px;
   }
 }
 

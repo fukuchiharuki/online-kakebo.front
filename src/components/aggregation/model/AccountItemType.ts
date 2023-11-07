@@ -1,4 +1,5 @@
 enum AccountItemType {
+  予算 = '予算',
   食費 = '食費',
   食費_外食等 = '食費(外食等)',
   日用品費 = '日用品費',
@@ -12,7 +13,6 @@ enum AccountItemType {
   通信費 = '通信費',
   住居費 = '住居費',
   特別費 = '特別費',
-  元入金 = '元入金',
 }
 
 export default AccountItemType
@@ -27,6 +27,14 @@ export function valuesOf(category: AccountItemType): AccountItemType[] {
 
 export function specOf(accountItemType: AccountItemType) {
   switch (accountItemType) {
+    case AccountItemType.予算:
+      return {
+        ...defaultSpec,
+        is予算: () => true,
+        shortName: () => '予算',
+        category: () => AccountItemType.予算,
+        excluded: () => true,
+      }
     case AccountItemType.食費:
       return {
         ...defaultSpec,
@@ -117,19 +125,11 @@ export function specOf(accountItemType: AccountItemType) {
         category: () => AccountItemType.特別費,
         hidden: () => true,
       }
-    case AccountItemType.元入金:
-      return {
-        ...defaultSpec,
-        is収入: () => true,
-        shortName: () => '元入金',
-        category: () => AccountItemType.元入金,
-        excluded: () => true,
-      }
   }
 }
 
 const defaultSpec = {
-  is収入: () => false,
+  is予算: () => false,
   is特別費: () => false,
   category: () => AccountItemType.食費,
   shortName: () => '食費',

@@ -7,8 +7,7 @@ type Aggregation = {
   cursorRange(): CursorRange
   cursorMonth(cursor: number): MonthlyAggregation
   currentMonth(): MonthlyAggregation
-  差引累計Data(): number[]
-  差引累計ChartData(): ChartData
+  差分ChartData(): ChartData
   収支ChartData(): ChartData
   推移ChartData(): ChartData
   支出ChartData(months: number): ChartData
@@ -39,27 +38,25 @@ const extension = {
     return this.cursorMonth(0)
   },
 
-  差引累計Data(): number[] {
-    return this.map((it) => it.asSummary().特別費を含めた差引()).reduce(
-      (acc: number[], n: number) => {
-        if (acc.length === 0) return [n]
-        return acc.concat([acc[acc.length - 1] + n])
-      },
-      []
-    )
-  },
-
-  差引累計ChartData(): ChartData {
+  差分ChartData(): ChartData {
     const labels = this.map((it) => it.month).slice(-12)
-    const data = this.差引累計Data().slice(-12)
+    const 特別費含むData = this.map((it) => it.asSummary().特別費を含めた差分()).slice(-12)
+    const 特別費除くData = this.map((it) => it.asSummary().特別費を含めない差分()).slice(-12)
     return {
       labels,
       datasets: [
         {
-          label: '差引',
+          label: '特別費を含む',
+          backgroundColor: colors[0],
+          borderColor: colors[0],
+          data: 特別費含むData,
+          hidden: true,
+        },
+        {
+          label: '特別費を除く',
           backgroundColor: colors[1],
           borderColor: colors[1],
-          data,
+          data: 特別費除くData,
         },
       ],
     }
@@ -67,23 +64,23 @@ const extension = {
 
   収支ChartData(): ChartData {
     const labels = this.map((it) => it.month).slice(-12)
-    const 収入Data = this.map((it) => it.asSummary().収入()).slice(-12)
-    const 特別費を除いた支出Data = this.map((it) =>
-      it.asSummary().特別費を除いた支出()
+    const 予算Data = this.map((it) => it.asSummary().予算()).slice(-12)
+    const 特別費を含めない支出Data = this.map((it) =>
+      it.asSummary().特別費を含めない支出()
     ).slice(-12)
     const 特別費Data = this.map((it) => it.asSummary().特別費()).slice(-12)
     return {
       labels,
       datasets: [
         {
-          label: '収入',
-          data: 収入Data,
+          label: '予算',
+          data: 予算Data,
           backgroundColor: colors[1],
           stack: 'income',
         },
         {
           label: '支出',
-          data: 特別費を除いた支出Data,
+          data: 特別費を含めない支出Data,
           backgroundColor: colors[2],
           stack: 'outgo',
         },
@@ -101,7 +98,7 @@ const extension = {
     const labels = this.map((it) => it.month).slice(-12)
     const types = this[this.length - 1]
       .accountItemTypes()
-      .filter((it) => !specOf(it).is収入())
+      .filter((it) => !specOf(it).is予算())
       .filter((it) => !specOf(it).excluded())
     const datasets = types.map((type, i) => ({
       label: specOf(type).shortName(),
@@ -118,7 +115,7 @@ const extension = {
   支出ChartData(months: number): ChartData {
     const labels = this[this.length - 1]
       .categories()
-      .filter((it) => !specOf(it).is収入())
+      .filter((it) => !specOf(it).is予算() && !specOf(it).is特別費())
     const data = labels.map((category, i) => {
       const amounts = this.map((it) =>
         it.filterByCategory(category).totalAmount()
@@ -148,28 +145,28 @@ const colors = [
 ]
 
 const manyColors = [
-  'rgb(51, 34, 136)',
-  'rgb(68, 170, 153)',
-  'rgb(17, 119, 51)',
-  'rgb(170, 68, 153)',
-  'rgb(204, 102, 119)',
-  'rgb(136, 204, 238)',
+  'rgb(50, 151, 121)',
+  'rgb(111, 192, 136)',
+  'rgb(212, 180, 131)',
+  'rgb(145, 119, 64)',
+  'rgb(243, 140, 141)',
+  'rgb(242, 184, 162)',
   'rgb(221, 204, 119)',
   'rgb(136, 34, 58)',
-  'rgb(221, 221, 221)',
+  'rgb(136, 204, 238)',
   'rgb(0, 0, 0)',
 ]
 
 const pieColors = [
-  'rgb(51, 34, 136)',
-  'rgb(17, 119, 51)',
-  'rgb(170, 68, 153)',
-  'rgb(204, 102, 119)',
-  'rgb(136, 204, 238)',
+  'rgb(50, 151, 121)',
+  'rgb(212, 180, 131)',
+  'rgb(145, 119, 64)',
+  'rgb(243, 140, 141)',
+  'rgb(242, 184, 162)',
   'rgb(136, 34, 58)',
   'rgb(221, 204, 119)',
-  'rgb(221, 221, 221)',
-  'rgb(221, 221, 221)',
+  'rgb(220, 220, 220)',
+  'rgb(180, 180, 180)',
   'rgb(0, 0, 0)',
 ]
 
