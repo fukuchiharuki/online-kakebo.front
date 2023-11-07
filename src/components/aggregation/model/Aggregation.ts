@@ -65,8 +65,8 @@ const extension = {
   収支ChartData(): ChartData {
     const labels = this.map((it) => it.month).slice(-12)
     const 予算Data = this.map((it) => it.asSummary().予算()).slice(-12)
-    const 特別費を除いた支出Data = this.map((it) =>
-      it.asSummary().特別費を除いた支出()
+    const 特別費を含めない支出Data = this.map((it) =>
+      it.asSummary().特別費を含めない支出()
     ).slice(-12)
     const 特別費Data = this.map((it) => it.asSummary().特別費()).slice(-12)
     return {
@@ -80,7 +80,7 @@ const extension = {
         },
         {
           label: '支出',
-          data: 特別費を除いた支出Data,
+          data: 特別費を含めない支出Data,
           backgroundColor: colors[2],
           stack: 'outgo',
         },
