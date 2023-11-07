@@ -20,12 +20,12 @@ function Chart(props: Props) {
         const 差分累計ChartData = aggregation.差分累計ChartData()
         return (
           <div>
-            <h3>直近{収支ChartData.labels.length}ヶ月の収支</h3>
+            <h3>収支</h3>
             <Bar data={収支ChartData} />
-            <h3>直近{推移ChartData.labels.length}ヶ月の推移</h3>
+            <h3 className='mt'>予実差</h3>
+            <Bar data={差分累計ChartData} />
+            <h3 className='mt'>推移</h3>
             <Line data={推移ChartData} options={{ aspectRatio: 1.6 }} />
-            <h3>直近{差分累計ChartData.labels.length}ヶ月の累計</h3>
-            <Line data={差分累計ChartData} />
           </div>
         )
       }}

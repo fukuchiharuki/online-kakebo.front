@@ -51,15 +51,22 @@ const extension = {
 
   差分累計ChartData(): ChartData {
     const labels = this.map((it) => it.month).slice(-12)
-    const data = this.差分累計Data().slice(-12)
+    const 特別費含むData = this.map((it) => it.asSummary().特別費を含めた差分()).slice(-12)
+    const 特別費除くData = this.map((it) => it.asSummary().特別費を含めない差分()).slice(-12)
     return {
       labels,
       datasets: [
         {
-          label: '差分',
+          label: '特別費含む',
+          backgroundColor: colors[0],
+          borderColor: colors[0],
+          data: 特別費含むData,
+        },
+        {
+          label: '特別費除く',
           backgroundColor: colors[1],
           borderColor: colors[1],
-          data,
+          data: 特別費除くData,
         },
       ],
     }
@@ -118,7 +125,7 @@ const extension = {
   支出ChartData(months: number): ChartData {
     const labels = this[this.length - 1]
       .categories()
-      .filter((it) => !specOf(it).is予算())
+      .filter((it) => !specOf(it).is予算() && !specOf(it).is特別費())
     const data = labels.map((category, i) => {
       const amounts = this.map((it) =>
         it.filterByCategory(category).totalAmount()
@@ -148,28 +155,28 @@ const colors = [
 ]
 
 const manyColors = [
-  'rgb(51, 34, 136)',
-  'rgb(68, 170, 153)',
-  'rgb(17, 119, 51)',
-  'rgb(170, 68, 153)',
-  'rgb(204, 102, 119)',
-  'rgb(136, 204, 238)',
+  'rgb(50, 151, 121)',
+  'rgb(111, 192, 136)',
+  'rgb(212, 180, 131)',
+  'rgb(145, 119, 64)',
+  'rgb(243, 140, 141)',
+  'rgb(242, 184, 162)',
   'rgb(221, 204, 119)',
   'rgb(136, 34, 58)',
-  'rgb(221, 221, 221)',
+  'rgb(136, 204, 238)',
   'rgb(0, 0, 0)',
 ]
 
 const pieColors = [
-  'rgb(51, 34, 136)',
-  'rgb(17, 119, 51)',
-  'rgb(170, 68, 153)',
-  'rgb(204, 102, 119)',
-  'rgb(136, 204, 238)',
+  'rgb(50, 151, 121)',
+  'rgb(212, 180, 131)',
+  'rgb(145, 119, 64)',
+  'rgb(243, 140, 141)',
+  'rgb(242, 184, 162)',
   'rgb(136, 34, 58)',
   'rgb(221, 204, 119)',
-  'rgb(221, 221, 221)',
-  'rgb(221, 221, 221)',
+  'rgb(220, 220, 220)',
+  'rgb(180, 180, 180)',
   'rgb(0, 0, 0)',
 ]
 
