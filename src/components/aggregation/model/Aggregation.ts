@@ -7,8 +7,8 @@ type Aggregation = {
   cursorRange(): CursorRange
   cursorMonth(cursor: number): MonthlyAggregation
   currentMonth(): MonthlyAggregation
-  差引累計Data(): number[]
-  差引累計ChartData(): ChartData
+  差分累計Data(): number[]
+  差分累計ChartData(): ChartData
   収支ChartData(): ChartData
   推移ChartData(): ChartData
   支出ChartData(months: number): ChartData
@@ -39,8 +39,8 @@ const extension = {
     return this.cursorMonth(0)
   },
 
-  差引累計Data(): number[] {
-    return this.map((it) => it.asSummary().特別費を含めた差引()).reduce(
+  差分累計Data(): number[] {
+    return this.map((it) => it.asSummary().特別費を含めた差分()).reduce(
       (acc: number[], n: number) => {
         if (acc.length === 0) return [n]
         return acc.concat([acc[acc.length - 1] + n])
@@ -49,14 +49,14 @@ const extension = {
     )
   },
 
-  差引累計ChartData(): ChartData {
+  差分累計ChartData(): ChartData {
     const labels = this.map((it) => it.month).slice(-12)
-    const data = this.差引累計Data().slice(-12)
+    const data = this.差分累計Data().slice(-12)
     return {
       labels,
       datasets: [
         {
-          label: '差引',
+          label: '差分',
           backgroundColor: colors[1],
           borderColor: colors[1],
           data,

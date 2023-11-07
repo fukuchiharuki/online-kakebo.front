@@ -18,17 +18,17 @@ function MonthlySummaryView(props: Props) {
         <Amount>{monthlySummary.支出()}</Amount>
       </dd>
       <dd>
-        特別費を除く: <Amount>{monthlySummary.特別費を除いた支出()}</Amount>
+        特別費を除いた: <Amount>{monthlySummary.特別費を除いた支出()}</Amount>
       </dd>
       <dd>
         特別費: <Amount>{monthlySummary.特別費()}</Amount>
       </dd>
-      <dt>差引</dt>
+      <dt>差分</dt>
       <dd>
-        <Amount>{monthlySummary.特別費を含めた差引()}</Amount>
+        <Amount>{monthlySummary.特別費を含めた差分()}</Amount>
       </dd>
       <dd>
-        特別費を除く: <Amount>{monthlySummary.特別費を含めない差引()}</Amount>
+        特別費を含めない: <Amount>{monthlySummary.特別費を含めない差分()}</Amount>
       </dd>
     </dl>
   )
