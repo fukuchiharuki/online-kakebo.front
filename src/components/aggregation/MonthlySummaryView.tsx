@@ -9,9 +9,9 @@ function MonthlySummaryView(props: Props) {
   const monthlySummary = props.children
   return (
     <dl className="monthly-summary">
-      <dt>収入</dt>
+      <dt>予算</dt>
       <dd>
-        <Amount>{monthlySummary.収入()}</Amount>
+        <Amount>{monthlySummary.予算()}</Amount>
       </dd>
       <dt>支出</dt>
       <dd>

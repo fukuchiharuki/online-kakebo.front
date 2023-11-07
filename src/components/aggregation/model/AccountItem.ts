@@ -6,7 +6,7 @@ type AccountItem = {
   category(): AccountItemType
   categoryIs(accountItemType: AccountItemType): boolean
   is(accountItemType: AccountItemType): boolean
-  is収入(): boolean
+  is予算(): boolean
   is特別費(): boolean
 }
 
@@ -31,8 +31,8 @@ const extension = {
     return this.accountItem === accountItemType
   },
 
-  is収入(): boolean {
-    return specOf(this.accountItem).is収入()
+  is予算(): boolean {
+    return specOf(this.accountItem).is予算()
   },
 
   is特別費(): boolean {

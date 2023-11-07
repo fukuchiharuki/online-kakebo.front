@@ -30,7 +30,7 @@ export function specOf(accountItemType: AccountItemType) {
     case AccountItemType.予算:
       return {
         ...defaultSpec,
-        is収入: () => true,
+        is予算: () => true,
         shortName: () => '予算',
         category: () => AccountItemType.予算,
         excluded: () => true,
@@ -129,7 +129,7 @@ export function specOf(accountItemType: AccountItemType) {
 }
 
 const defaultSpec = {
-  is収入: () => false,
+  is予算: () => false,
   is特別費: () => false,
   category: () => AccountItemType.食費,
   shortName: () => '食費',

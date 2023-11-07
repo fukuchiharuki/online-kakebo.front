@@ -67,7 +67,7 @@ const extension = {
 
   収支ChartData(): ChartData {
     const labels = this.map((it) => it.month).slice(-12)
-    const 収入Data = this.map((it) => it.asSummary().収入()).slice(-12)
+    const 予算Data = this.map((it) => it.asSummary().予算()).slice(-12)
     const 特別費を除いた支出Data = this.map((it) =>
       it.asSummary().特別費を除いた支出()
     ).slice(-12)
@@ -76,8 +76,8 @@ const extension = {
       labels,
       datasets: [
         {
-          label: '収入',
-          data: 収入Data,
+          label: '予算',
+          data: 予算Data,
           backgroundColor: colors[1],
           stack: 'income',
         },
@@ -101,7 +101,7 @@ const extension = {
     const labels = this.map((it) => it.month).slice(-12)
     const types = this[this.length - 1]
       .accountItemTypes()
-      .filter((it) => !specOf(it).is収入())
+      .filter((it) => !specOf(it).is予算())
       .filter((it) => !specOf(it).excluded())
     const datasets = types.map((type, i) => ({
       label: specOf(type).shortName(),
@@ -118,7 +118,7 @@ const extension = {
   支出ChartData(months: number): ChartData {
     const labels = this[this.length - 1]
       .categories()
-      .filter((it) => !specOf(it).is収入())
+      .filter((it) => !specOf(it).is予算())
     const data = labels.map((category, i) => {
       const amounts = this.map((it) =>
         it.filterByCategory(category).totalAmount()

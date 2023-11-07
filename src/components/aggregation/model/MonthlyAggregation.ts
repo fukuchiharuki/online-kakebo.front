@@ -11,7 +11,7 @@ type MonthlyAggregation = {
   categories(): AccountItemType[]
   filterByCategory(accountItemType: AccountItemType): MonthlyAggregation
   filterByAccountItemType(accountItemType: AccountItemType): MonthlyAggregation
-  filter収入(): MonthlyAggregation
+  filter予算(): MonthlyAggregation
   filter支出(): MonthlyAggregation
   filter特別費(): MonthlyAggregation
 }
@@ -73,17 +73,17 @@ const extension = {
     })
   },
 
-  filter収入(): MonthlyAggregation {
+  filter予算(): MonthlyAggregation {
     return asMonthlyAggregation({
       month: this.month,
-      data: this.data.filter((it) => it.is収入()),
+      data: this.data.filter((it) => it.is予算()),
     })
   },
 
   filter支出(): MonthlyAggregation {
     return asMonthlyAggregation({
       month: this.month,
-      data: this.data.filter((it) => !it.is収入()),
+      data: this.data.filter((it) => !it.is予算()),
     })
   },
 
