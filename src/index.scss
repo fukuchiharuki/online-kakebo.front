@@ -65,6 +65,10 @@ h1, h2 {
 
 h3 {
   font-size: medium;
+
+  &.mt {
+    margin-top: 32px;
+  }
 }
 
 .bottom-nav {
