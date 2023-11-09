@@ -75,19 +75,18 @@ const extension = {
         {
           label: '予算',
           data: 予算Data,
-          backgroundColor: colors[1],
           stack: 'income',
         },
         {
           label: '支出',
           data: 特別費を含めない支出Data,
-          backgroundColor: colors[2],
+          backgroundColor: colors[1],
           stack: 'outgo',
         },
         {
           label: '特別費',
           data: 特別費Data,
-          backgroundColor: colors[3],
+          backgroundColor: colors[0],
           stack: 'outgo',
         },
       ],
@@ -138,13 +137,13 @@ const extension = {
 } as Aggregation
 
 const colors = [
-  'rgb(50, 151, 121)',
-  'rgb(111, 192, 136)',
-  'rgb(212, 180, 131)',
-  'rgb(145, 119, 64)',
+  'rgb(0, 102, 204)',
+  'rgb(81, 157, 233)',
 ]
 
 const manyColors = [
+  //'rgb(212, 180, 131)',
+  //'rgb(145, 119, 64)',
   'rgb(50, 151, 121)',
   'rgb(111, 192, 136)',
   'rgb(212, 180, 131)',
