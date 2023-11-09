@@ -1,9 +1,10 @@
+import { specOf, values } from 'components/aggregation/model/AccountItemType'
 import Entries from 'components/entry/model/Entries'
 import Amount from 'components/ui/Amount'
 import Repeat from 'components/ui/Repeat'
 import WithLoading from 'components/ui/WithLoading'
 import { QueryState } from 'infrastructure/useQuery'
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 
 type Props = {
   state: QueryState<Entries>
@@ -11,13 +12,32 @@ type Props = {
 
 function Book(props: Props) {
   const { isLoading, data } = props.state
+
+  const accountItems = values().filter((it) => !specOf(it).is予算() && specOf(it).list())
+  const [tags, setTags] = useState([] as string[])
+  function toggleTag(tag: string) {
+    setTags(
+      tags.includes(tag) ? tags.filter((it) => it !== tag) : tags.concat([tag])
+    )
+  }
+  function tagClass(tag: string) {
+    return tags.includes(tag) ? 'tag tag--on' : 'tag tag--off'
+  }
+
   return (
     <WithLoading if={isLoading || data == null}>
       {() => {
-        const entries = data!
+        const entries = data!.filter((it) =>
+          tags.length ? tags.includes(it.accountItem) : true
+        )
         return (
           <div>
             <h3>半年分のログ</h3>
+            <Repeat in={accountItems}>
+              {(it) => (
+                <span className={tagClass(it)} onClick={() => toggleTag(it)}>{it}</span>
+              )}
+            </Repeat>
             <table className="entries">
               <tbody>
                 <Repeat in={entries}>

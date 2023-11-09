@@ -146,6 +146,21 @@ h3 {
   }
 }
 
+span.tag {
+  border: 1px solid lightgray;
+  border-radius: 2px;
+  font-size: x-small;
+  padding: 2px 8px;
+
+  &+span.tag {
+    margin-left: 4px;
+  }
+
+  &--on {
+    background-color: #e0e0e0;
+  }
+}
+
 table.entries {
   margin-top: 16px;
   width: 100%;
