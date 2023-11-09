@@ -8,9 +8,9 @@ type Aggregation = {
   cursorMonth(cursor: number): MonthlyAggregation
   currentMonth(): MonthlyAggregation
   差分ChartData(): ChartData
-  収支ChartData(): ChartData
+  支出ChartData(): ChartData
   推移ChartData(): ChartData
-  支出ChartData(months: number): ChartData
+  支出割合ChartData(months: number): ChartData
 } & Array<MonthlyAggregation>
 
 export default Aggregation
@@ -62,7 +62,7 @@ const extension = {
     }
   },
 
-  収支ChartData(): ChartData {
+  支出ChartData(): ChartData {
     const labels = this.map((it) => it.month).slice(-12)
     const 予算Data = this.map((it) => it.asSummary().予算()).slice(-12)
     const 特別費を含めない支出Data = this.map((it) =>
@@ -75,19 +75,18 @@ const extension = {
         {
           label: '予算',
           data: 予算Data,
-          backgroundColor: colors[1],
           stack: 'income',
         },
         {
           label: '支出',
           data: 特別費を含めない支出Data,
-          backgroundColor: colors[2],
+          backgroundColor: colors[1],
           stack: 'outgo',
         },
         {
           label: '特別費',
           data: 特別費Data,
-          backgroundColor: colors[3],
+          backgroundColor: colors[0],
           stack: 'outgo',
         },
       ],
@@ -112,7 +111,7 @@ const extension = {
     return { labels, datasets }
   },
 
-  支出ChartData(months: number): ChartData {
+  支出割合ChartData(months: number): ChartData {
     const labels = this[this.length - 1]
       .categories()
       .filter((it) => !specOf(it).is予算() && !specOf(it).is特別費())
@@ -138,13 +137,13 @@ const extension = {
 } as Aggregation
 
 const colors = [
-  'rgb(50, 151, 121)',
-  'rgb(111, 192, 136)',
-  'rgb(212, 180, 131)',
-  'rgb(145, 119, 64)',
+  'rgb(0, 102, 204)',
+  'rgb(81, 157, 233)',
 ]
 
 const manyColors = [
+  //'rgb(212, 180, 131)',
+  //'rgb(145, 119, 64)',
   'rgb(50, 151, 121)',
   'rgb(111, 192, 136)',
   'rgb(212, 180, 131)',

@@ -19,10 +19,10 @@ function PieChart(props: Props) {
       {() => {
         const aggregation = data!
         const 支出割合ChartData = new Map<number, ChartData>()
-        支出割合ChartData.set(1, aggregation.支出ChartData(1))
-        支出割合ChartData.set(3, aggregation.支出ChartData(3))
-        支出割合ChartData.set(6, aggregation.支出ChartData(6))
-        支出割合ChartData.set(12, aggregation.支出ChartData(12))
+        支出割合ChartData.set(1, aggregation.支出割合ChartData(1))
+        支出割合ChartData.set(3, aggregation.支出割合ChartData(3))
+        支出割合ChartData.set(6, aggregation.支出割合ChartData(6))
+        支出割合ChartData.set(12, aggregation.支出割合ChartData(12))
         return (
           <div>
             <h3>先月分の支出割合</h3>

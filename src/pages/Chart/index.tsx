@@ -15,13 +15,13 @@ function Chart(props: Props) {
     <WithLoading if={isLoading || data == null}>
       {() => {
         const aggregation = data!
-        const 収支ChartData = aggregation.収支ChartData()
+        const 支出ChartData = aggregation.支出ChartData()
         const 推移ChartData = aggregation.推移ChartData()
         const 差分ChartData = aggregation.差分ChartData()
         return (
           <div>
-            <h3>収支</h3>
-            <Bar data={収支ChartData} />
+            <h3>支出</h3>
+            <Bar data={支出ChartData} />
             <h3 className='mt'>予実差</h3>
             <Bar data={差分ChartData} />
             <h3 className='mt'>推移</h3>
