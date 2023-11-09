@@ -8,9 +8,9 @@ type Aggregation = {
   cursorMonth(cursor: number): MonthlyAggregation
   currentMonth(): MonthlyAggregation
   差分ChartData(): ChartData
-  収支ChartData(): ChartData
+  支出ChartData(): ChartData
   推移ChartData(): ChartData
-  支出ChartData(months: number): ChartData
+  支出割合ChartData(months: number): ChartData
 } & Array<MonthlyAggregation>
 
 export default Aggregation
@@ -62,7 +62,7 @@ const extension = {
     }
   },
 
-  収支ChartData(): ChartData {
+  支出ChartData(): ChartData {
     const labels = this.map((it) => it.month).slice(-12)
     const 予算Data = this.map((it) => it.asSummary().予算()).slice(-12)
     const 特別費を含めない支出Data = this.map((it) =>
@@ -112,7 +112,7 @@ const extension = {
     return { labels, datasets }
   },
 
-  支出ChartData(months: number): ChartData {
+  支出割合ChartData(months: number): ChartData {
     const labels = this[this.length - 1]
       .categories()
       .filter((it) => !specOf(it).is予算() && !specOf(it).is特別費())
