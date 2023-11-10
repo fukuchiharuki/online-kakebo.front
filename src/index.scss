@@ -219,5 +219,8 @@ table.entries {
     &::after {
       content: '%';
     }
+    &.yen::after {
+      content: '円';
+    }
   }
 }
