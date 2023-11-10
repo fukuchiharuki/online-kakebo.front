@@ -17,7 +17,7 @@ function Chart(props: Props) {
         const aggregation = data!
         const 支出ChartData = aggregation.支出ChartData()
         const 推移ChartData = aggregation.推移ChartData()
-        const 差分ChartData = aggregation.差分ChartData()
+        const 差異ChartData = aggregation.差異ChartData()
         function ave(data: number[], addition?: number[]): string {
           const dataAve = data.reduce((acc, n) => acc + n, 0) / data.length
           const additionAve = addition
@@ -36,7 +36,7 @@ function Chart(props: Props) {
               <dt>支出平均</dt>
               <dd className="yen">{ave(支出ChartData.datasets[1].data)}</dd>
               <br />
-              <dt>特別費を含む</dt>
+              <dt>特別費込</dt>
               <dd className="yen">
                 {ave(
                   支出ChartData.datasets[1].data,
@@ -48,12 +48,12 @@ function Chart(props: Props) {
             <h3 className="mt">予実差異</h3>
             <dl className="coefficient">
               <dt>差異平均</dt>
-              <dd className="yen">{ave(差分ChartData.datasets[0].data)}</dd>
+              <dd className="yen">{ave(差異ChartData.datasets[0].data)}</dd>
               <br />
-              <dt>特別費を含む</dt>
-              <dd className="yen">{ave(差分ChartData.datasets[1].data)}</dd>
+              <dt>特別費込</dt>
+              <dd className="yen">{ave(差異ChartData.datasets[1].data)}</dd>
             </dl>
-            <Bar data={差分ChartData} />
+            <Bar data={差異ChartData} />
             <h3 className="mt">推移</h3>
             <Line data={推移ChartData} options={{ aspectRatio: 1.6 }} />
           </div>
