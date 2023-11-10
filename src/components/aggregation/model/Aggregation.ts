@@ -46,17 +46,17 @@ const extension = {
       labels,
       datasets: [
         {
+          label: '特別費を除く',
+          backgroundColor: colors[1],
+          borderColor: colors[1],
+          data: 特別費除くData,
+        },
+        {
           label: '特別費を含む',
           backgroundColor: colors[0],
           borderColor: colors[0],
           data: 特別費含むData,
           hidden: true,
-        },
-        {
-          label: '特別費を除く',
-          backgroundColor: colors[1],
-          borderColor: colors[1],
-          data: 特別費除くData,
         },
       ],
     }
