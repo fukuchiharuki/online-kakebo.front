@@ -7,7 +7,7 @@ type Aggregation = {
   cursorRange(): CursorRange
   cursorMonth(cursor: number): MonthlyAggregation
   currentMonth(): MonthlyAggregation
-  差分ChartData(): ChartData
+  差異ChartData(): ChartData
   支出ChartData(): ChartData
   推移ChartData(): ChartData
   支出割合ChartData(months: number): ChartData
@@ -38,24 +38,24 @@ const extension = {
     return this.cursorMonth(0)
   },
 
-  差分ChartData(): ChartData {
+  差異ChartData(): ChartData {
     const labels = this.map((it) => it.month).slice(-12)
-    const 特別費含むData = this.map((it) => it.asSummary().特別費を含めた差分()).slice(-12)
-    const 特別費除くData = this.map((it) => it.asSummary().特別費を含めない差分()).slice(-12)
+    const 予実差異Data = this.map((it) => it.asSummary().特別費を含めない差異()).slice(-12)
+    const 特別費込Data = this.map((it) => it.asSummary().特別費を含めた差異()).slice(-12)
     return {
       labels,
       datasets: [
         {
-          label: '特別費を除く',
+          label: '予実差異',
           backgroundColor: colors[1],
           borderColor: colors[1],
-          data: 特別費除くData,
+          data: 予実差異Data,
         },
         {
-          label: '特別費を含む',
+          label: '特別費込',
           backgroundColor: colors[0],
           borderColor: colors[0],
-          data: 特別費含むData,
+          data: 特別費込Data,
           hidden: true,
         },
       ],

@@ -27,11 +27,11 @@ export default class MonthlySummary {
     return this.支出() - this.特別費()
   }
 
-  特別費を含めない差分() {
+  特別費を含めない差異() {
     return this.予算() - this.特別費を含めない支出()
   }
 
-  特別費を含めた差分() {
+  特別費を含めた差異() {
     return this.予算() - this.支出()
   }
 }
