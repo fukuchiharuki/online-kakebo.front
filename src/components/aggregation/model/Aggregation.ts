@@ -47,14 +47,14 @@ const extension = {
       datasets: [
         {
           label: '予実差異',
-          backgroundColor: colors[1],
-          borderColor: colors[1],
+          backgroundColor: colors[0],
+          borderColor: colors[0],
           data: 予実差異Data,
         },
         {
           label: '特別費込',
-          backgroundColor: colors[0],
-          borderColor: colors[0],
+          backgroundColor: colors[1],
+          borderColor: colors[1],
           data: 特別費込Data,
           hidden: true,
         },
@@ -80,13 +80,13 @@ const extension = {
         {
           label: '支出',
           data: 特別費を含めない支出Data,
-          backgroundColor: colors[1],
+          backgroundColor: colors[0],
           stack: 'outgo',
         },
         {
           label: '特別費',
           data: 特別費Data,
-          backgroundColor: colors[0],
+          backgroundColor: colors[1],
           stack: 'outgo',
         },
       ],
@@ -137,32 +137,33 @@ const extension = {
 } as Aggregation
 
 const colors = [
-  'rgb(0, 102, 204)',
   'rgb(81, 157, 233)',
+  'rgb(0, 102, 204)',
 ]
 
 const manyColors = [
-  //'rgb(212, 180, 131)',
-  //'rgb(145, 119, 64)',
-  'rgb(50, 151, 121)',
   'rgb(111, 192, 136)',
+  'rgb(50, 151, 121)',
   'rgb(212, 180, 131)',
-  'rgb(145, 119, 64)',
-  'rgb(243, 140, 141)',
-  'rgb(242, 184, 162)',
-  'rgb(221, 204, 119)',
-  'rgb(136, 34, 58)',
   'rgb(136, 204, 238)',
+  'rgb(243, 140, 141)',
+  'rgb(178, 176, 234)',
+  'rgb(145, 119, 64)',
+  'rgb(224, 193, 69)',
+  'rgb(201, 25, 11)',
+  'rgb(81, 157, 233)',
   'rgb(0, 0, 0)',
 ]
 
 const pieColors = [
-  'rgb(50, 151, 121)',
+  'rgb(111, 192, 136)',
   'rgb(212, 180, 131)',
-  'rgb(145, 119, 64)',
+  'rgb(136, 204, 238)',
   'rgb(243, 140, 141)',
-  'rgb(242, 184, 162)',
-  'rgb(136, 34, 58)',
+  'rgb(178, 176, 234)',
+  'rgb(145, 119, 64)',
+  'rgb(244, 182, 120)',
+  'rgb(201, 25, 11)',
   'rgb(221, 204, 119)',
   'rgb(220, 220, 220)',
   'rgb(180, 180, 180)',
