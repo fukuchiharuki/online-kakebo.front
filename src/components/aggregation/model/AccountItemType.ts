@@ -2,10 +2,12 @@ enum AccountItemType {
   予算 = '予算',
   食費 = '食費',
   食費_外食等 = '食費(外食等)',
-  日用品費 = '日用品費',
-  娯楽費 = '娯楽費',
-  医療費 = '医療費',
+  生活費 = '生活費',
   子育て費用 = '子育て費用',
+  家族レク = '家族レク',
+  交際費 = '交際費',
+  趣味娯楽費 = '趣味娯楽費',
+  医療費 = '医療費',
   水道光熱費 = '水道光熱費',
   水道光熱費_電気 = '水道光熱費(電気)',
   水道光熱費_ガス = '水道光熱費(ガス)',
@@ -47,26 +49,12 @@ export function specOf(accountItemType: AccountItemType) {
         shortName: () => '外食等',
         category: () => AccountItemType.食費,
       }
-    case AccountItemType.日用品費:
+    case AccountItemType.生活費:
       return {
         ...defaultSpec,
-        shortName: () => '日用品費',
-        category: () => AccountItemType.日用品費,
-        hidden: () => true,
-      }
-    case AccountItemType.娯楽費:
-      return {
-        ...defaultSpec,
-        shortName: () => '娯楽費',
-        category: () => AccountItemType.娯楽費,
-        hidden: () => true,
-      }
-    case AccountItemType.医療費:
-      return {
-        ...defaultSpec,
-        shortName: () => '医療費',
-        category: () => AccountItemType.医療費,
-        hidden: () => true,
+        shortName: () => '生活費',
+        category: () => AccountItemType.生活費,
+        hidden: () => false,
       }
     case AccountItemType.子育て費用:
       return {
@@ -74,6 +62,34 @@ export function specOf(accountItemType: AccountItemType) {
         shortName: () => '子育て費用',
         category: () => AccountItemType.子育て費用,
         hidden: () => true,
+      }
+    case AccountItemType.家族レク:
+      return {
+        ...defaultSpec,
+        shortName: () => '家族レク',
+        category: () => AccountItemType.家族レク,
+        hidden: () => true,
+      }
+    case AccountItemType.交際費:
+      return {
+        ...defaultSpec,
+        shortName: () => '交際費',
+        category: () => AccountItemType.交際費,
+        hidden: () => true,
+      }
+    case AccountItemType.趣味娯楽費:
+      return {
+        ...defaultSpec,
+        shortName: () => '趣味娯楽費',
+        category: () => AccountItemType.趣味娯楽費,
+        hidden: () => true,
+      }
+    case AccountItemType.医療費:
+      return {
+        ...defaultSpec,
+        shortName: () => '医療費',
+        category: () => AccountItemType.医療費,
+        excluded: () => true,
       }
     case AccountItemType.水道光熱費:
       return {
