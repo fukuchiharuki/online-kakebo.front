@@ -3,11 +3,11 @@ import { useState } from 'react'
 const menu: MenuItem[] = [
   {
     path: '/',
-    icon: 'gg-clipboard',
+    icon: 'gg-view-list',
   },
   {
     path: '/chart',
-    icon: 'gg-trending',
+    icon: 'gg-insights',
   },
   {
     path: '/pie',
@@ -15,7 +15,7 @@ const menu: MenuItem[] = [
   },
   {
     path: '/book',
-    icon: 'gg-view-list',
+    icon: 'gg-clipboard',
   },
 ]
 
