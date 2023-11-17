@@ -54,7 +54,6 @@ export function specOf(accountItemType: AccountItemType) {
         ...defaultSpec,
         shortName: () => '生活費',
         category: () => AccountItemType.生活費,
-        hidden: () => false,
       }
     case AccountItemType.子育て費用:
       return {
@@ -82,7 +81,6 @@ export function specOf(accountItemType: AccountItemType) {
         ...defaultSpec,
         shortName: () => '趣味娯楽費',
         category: () => AccountItemType.趣味娯楽費,
-        hidden: () => true,
       }
     case AccountItemType.医療費:
       return {

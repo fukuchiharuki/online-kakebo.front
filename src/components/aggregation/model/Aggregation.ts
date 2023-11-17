@@ -88,6 +88,7 @@ const extension = {
           data: 特別費Data,
           backgroundColor: colors[1],
           stack: 'outgo',
+          hidden: true,
         },
       ],
     }
