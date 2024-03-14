@@ -33,7 +33,7 @@ function Chart(props: Props) {
             <h3>支出</h3>
             <dl className="coefficient">
               <dt>支出平均</dt>
-              <dd className="yen">{ave(支出ChartData.datasets[1].data)}</dd>
+              <dd className="yen">{ave(支出ChartData.datasets[0].data)}</dd>
               <br />
               <dt>特別費込</dt>
               <dd className="yen">
