@@ -31,24 +31,31 @@ function PieChart(props: Props) {
               <dd>{rate(AccountItemType.食費, 支出割合ChartData.get(1)!)}</dd>
               <br />
               <dt>エンジェル係数</dt>
-              <dd>{rate(AccountItemType.子育て費用, 支出割合ChartData.get(1)!)}</dd>
+              <dd>
+                {rate(AccountItemType.子育て費用, 支出割合ChartData.get(1)!)}
+              </dd>
             </dl>
             <Pie data={支出割合ChartData.get(1)!} />
-            {
-              [3, 6, 12].map((months, index) => (
-                <div key={index}>
-                  <h3 className='mt'>先月から{months}ヶ月分の支出割合平均</h3>
-                  <dl className="coefficient">
-                    <dt>エンゲル係数</dt>
-                    <dd>{rate(AccountItemType.食費, 支出割合ChartData.get(months)!)}</dd>
-                    <br />
-                    <dt>エンジェル係数</dt>
-                    <dd>{rate(AccountItemType.子育て費用, 支出割合ChartData.get(months)!)}</dd>
-                  </dl>
-                  <Pie data={支出割合ChartData.get(months)!} />
-                </div>
-              ))
-            }
+            {[3, 6, 12].map((months, index) => (
+              <div key={index}>
+                <h3 className="mt">先月から{months}ヶ月分の支出割合平均</h3>
+                <dl className="coefficient">
+                  <dt>エンゲル係数</dt>
+                  <dd>
+                    {rate(AccountItemType.食費, 支出割合ChartData.get(months)!)}
+                  </dd>
+                  <br />
+                  <dt>エンジェル係数</dt>
+                  <dd>
+                    {rate(
+                      AccountItemType.子育て費用,
+                      支出割合ChartData.get(months)!
+                    )}
+                  </dd>
+                </dl>
+                <Pie data={支出割合ChartData.get(months)!} />
+              </div>
+            ))}
           </div>
         )
       }}

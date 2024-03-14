@@ -40,8 +40,12 @@ const extension = {
 
   差異ChartData(): ChartData {
     const labels = this.map((it) => it.month).slice(-12)
-    const 予実差異Data = this.map((it) => it.asSummary().特別費を含めない差異()).slice(-12)
-    const 特別費込Data = this.map((it) => it.asSummary().特別費を含めた差異()).slice(-12)
+    const 予実差異Data = this.map((it) =>
+      it.asSummary().特別費を含めない差異()
+    ).slice(-12)
+    const 特別費込Data = this.map((it) =>
+      it.asSummary().特別費を含めた差異()
+    ).slice(-12)
     return {
       labels,
       datasets: [
@@ -131,10 +135,7 @@ const extension = {
   },
 } as Aggregation
 
-const colors = [
-  'rgb(81, 157, 233)',
-  'rgb(0, 102, 204)',
-]
+const colors = ['rgb(81, 157, 233)', 'rgb(0, 102, 204)']
 
 const manyColors = [
   'rgb(111, 192, 136)',
