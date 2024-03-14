@@ -13,7 +13,7 @@ function MonthlyDetailsView(props: Props) {
   const monthlyAggregation = props.children
   return (
     <dl className="monthly-details">
-      <Repeat in={monthlyAggregation.categories()}>
+      <Repeat in={monthlyAggregation.filter支出().categories()}>
         {(it) => {
           const categoryTotalAmount = monthlyAggregation
             .filterByCategory(it)
@@ -37,7 +37,10 @@ function MonthlyDetailsView(props: Props) {
                   {(it) => (
                     <Mount if={it.list}>
                       <dd>
-                        {it.name}: <Amount>{it.value}</Amount>
+                        {it.name}:{' '}
+                        <span>
+                          <Amount>{it.value}</Amount>
+                        </span>
                       </dd>
                     </Mount>
                   )}
