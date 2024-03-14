@@ -17,7 +17,6 @@ function Chart(props: Props) {
         const aggregation = data!
         const 支出ChartData = aggregation.支出ChartData()
         const 推移ChartData = aggregation.推移ChartData()
-        const 差異ChartData = aggregation.差異ChartData()
         function ave(data: number[], addition?: number[]): string {
           const dataAve = data.reduce((acc, n) => acc + n, 0) / data.length
           const additionAve = addition
