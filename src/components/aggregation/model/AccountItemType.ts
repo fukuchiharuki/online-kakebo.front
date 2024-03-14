@@ -81,6 +81,7 @@ export function specOf(accountItemType: AccountItemType) {
         ...defaultSpec,
         shortName: () => '趣味娯楽費',
         category: () => AccountItemType.趣味娯楽費,
+        hidden: () => true,
       }
     case AccountItemType.医療費:
       return {
