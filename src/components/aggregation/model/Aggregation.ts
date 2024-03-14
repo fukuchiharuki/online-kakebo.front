@@ -40,8 +40,12 @@ const extension = {
 
   差異ChartData(): ChartData {
     const labels = this.map((it) => it.month).slice(-12)
-    const 予実差異Data = this.map((it) => it.asSummary().特別費を含めない差異()).slice(-12)
-    const 特別費込Data = this.map((it) => it.asSummary().特別費を含めた差異()).slice(-12)
+    const 予実差異Data = this.map((it) =>
+      it.asSummary().特別費を含めない差異()
+    ).slice(-12)
+    const 特別費込Data = this.map((it) =>
+      it.asSummary().特別費を含めた差異()
+    ).slice(-12)
     return {
       labels,
       datasets: [
@@ -64,7 +68,6 @@ const extension = {
 
   支出ChartData(): ChartData {
     const labels = this.map((it) => it.month).slice(-12)
-    const 予算Data = this.map((it) => it.asSummary().予算()).slice(-12)
     const 特別費を含めない支出Data = this.map((it) =>
       it.asSummary().特別費を含めない支出()
     ).slice(-12)
@@ -72,11 +75,6 @@ const extension = {
     return {
       labels,
       datasets: [
-        {
-          label: '予算',
-          data: 予算Data,
-          stack: 'income',
-        },
         {
           label: '支出',
           data: 特別費を含めない支出Data,
@@ -137,10 +135,7 @@ const extension = {
   },
 } as Aggregation
 
-const colors = [
-  'rgb(81, 157, 233)',
-  'rgb(0, 102, 204)',
-]
+const colors = ['rgb(81, 157, 233)', 'rgb(0, 102, 204)']
 
 const manyColors = [
   'rgb(111, 192, 136)',

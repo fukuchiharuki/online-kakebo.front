@@ -13,7 +13,9 @@ type Props = {
 function Book(props: Props) {
   const { isLoading, data } = props.state
 
-  const accountItems = values().filter((it) => !specOf(it).is予算() && specOf(it).list())
+  const accountItems = values().filter(
+    (it) => !specOf(it).is予算() && specOf(it).list()
+  )
   const [tags, setTags] = useState([] as string[])
   function toggleTag(tag: string) {
     setTags(
@@ -35,7 +37,9 @@ function Book(props: Props) {
             <h3>半年分のログ</h3>
             <Repeat in={accountItems}>
               {(it) => (
-                <span className={tagClass(it)} onClick={() => toggleTag(it)}>{it}</span>
+                <span className={tagClass(it)} onClick={() => toggleTag(it)}>
+                  {it}
+                </span>
               )}
             </Repeat>
             <table className="entries">

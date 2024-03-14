@@ -9,26 +9,21 @@ function MonthlySummaryView(props: Props) {
   const monthlySummary = props.children
   return (
     <dl className="monthly-summary">
-      <dt>予算</dt>
-      <dd>
-        <Amount>{monthlySummary.予算()}</Amount>
-      </dd>
       <dt>支出</dt>
       <dd>
         <Amount>{monthlySummary.支出()}</Amount>
       </dd>
       <dd>
-        特別費抜き: <Amount>{monthlySummary.特別費を含めない支出()}</Amount>
+        特別費を除く:{' '}
+        <span>
+          <Amount>{monthlySummary.特別費を含めない支出()}</Amount>
+        </span>
       </dd>
       <dd>
-        特別費: <Amount>{monthlySummary.特別費()}</Amount>
-      </dd>
-      <dt>差異</dt>
-      <dd>
-        <Amount>{monthlySummary.特別費を含めた差異()}</Amount>
-      </dd>
-      <dd>
-        特別費抜き: <Amount>{monthlySummary.特別費を含めない差異()}</Amount>
+        特別費:{' '}
+        <span>
+          <Amount>{monthlySummary.特別費()}</Amount>
+        </span>
       </dd>
     </dl>
   )

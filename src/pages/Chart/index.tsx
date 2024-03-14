@@ -39,21 +39,12 @@ function Chart(props: Props) {
               <dt>特別費込</dt>
               <dd className="yen">
                 {ave(
-                  支出ChartData.datasets[1].data,
-                  支出ChartData.datasets[2].data
+                  支出ChartData.datasets[0].data,
+                  支出ChartData.datasets[1].data
                 )}
               </dd>
             </dl>
             <Bar data={支出ChartData} />
-            <h3 className="mt">予実差異</h3>
-            <dl className="coefficient">
-              <dt>差異平均</dt>
-              <dd className="yen">{ave(差異ChartData.datasets[0].data)}</dd>
-              <br />
-              <dt>特別費込</dt>
-              <dd className="yen">{ave(差異ChartData.datasets[1].data)}</dd>
-            </dl>
-            <Bar data={差異ChartData} />
             <h3 className="mt">推移</h3>
             <Line data={推移ChartData} options={{ aspectRatio: 1.6 }} />
           </div>
